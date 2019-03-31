@@ -36,7 +36,7 @@ Inline figures are done like so:
 
 - ![Logo Jekyll]({{"/assets/images/jekyll-logo.png" | absolute_url}})
 
-- ![Logo Jekyll](http://memofil.github.io/assets/images/categories/jekyll-logo.png)
+# - ![Logo Jekyll](http://memofil.github.io/assets/images/categories/jekyll-logo.png)
 
 - ![Logo Jekyll](/jekyll-logo.png)
 
