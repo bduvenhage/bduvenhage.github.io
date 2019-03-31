@@ -38,6 +38,8 @@ Inline figures are done like so:
 
 - <img src="http://memofil.github.io/assets/images/categories/jekyll-logo.png" width="20" height="20" />
 
+- <img src="/assets/images/jekyll-logo.png" width="20" height="20" />
+
 - ![Logo Jekyll](/jekyll-logo.png)
 
 Check out the [Jekyll docs][jekyll-docs] for more info on how to get the most out of Jekyll. File all bugs/feature requests at [Jekyll’s GitHub repo][jekyll-gh]. If you have questions, you can ask them on [Jekyll Talk][jekyll-talk].
