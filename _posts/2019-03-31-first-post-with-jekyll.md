@@ -3,6 +3,7 @@ layout: post
 title:  "First post with Jekyll."
 date:   2019-03-31 11:28:22 +0200
 categories: jekyll
+tags: jekyll
 ---
 
 Jekyll is pretty cool. I followed their [Quickstart](https://github.com/jekyll/minima) guide which generates a basic blog site using the minima theme. Once you push the site to your `https://github.com/<username>/<username>.github.io` repo Github Pages will build your Jekyll site and make it available online at `<username>.github.io`.
