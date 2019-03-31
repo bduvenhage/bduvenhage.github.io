@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "The knapsack problem"
-date:   2019-04-01 10:00:00 +0200
+date:   2019-04-01
 categories: algorithms, dynamic programming
 ---
 
