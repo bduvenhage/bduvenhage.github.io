@@ -32,13 +32,13 @@ Inline tables are done like so:
 
 Inline figures are done like so:
 
-- ![Logo Jekyll]({{site.url}}/assets/images/categories/jekyll-logo.png )
+- ![Logo Jekyll]({{site.url}}/assets/images/jekyll-logo.png )
 
-- ![Logo Jekyll]({{"/assets/images/categories/jekyll-logo.png" | absolute_url}})
+- ![Logo Jekyll]({{"/assets/images/jekyll-logo.png" | absolute_url}})
 
 - ![Logo Jekyll](http://memofil.github.io/assets/images/categories/jekyll-logo.png)
 
-- ![Logo Jekyll](/categories/jekyll-logo.png)
+- ![Logo Jekyll](/jekyll-logo.png)
 
 Check out the [Jekyll docs][jekyll-docs] for more info on how to get the most out of Jekyll. File all bugs/feature requests at [Jekyll’s GitHub repo][jekyll-gh]. If you have questions, you can ask them on [Jekyll Talk][jekyll-talk].
 
