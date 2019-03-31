@@ -23,6 +23,7 @@ int main(void)
 {% endhighlight %}
 
 Inline tables are done like so:
+
 | Priority apples | Second priority | Third priority |
 |-------|--------|---------|
 | ambrosia | gala | red delicious |
