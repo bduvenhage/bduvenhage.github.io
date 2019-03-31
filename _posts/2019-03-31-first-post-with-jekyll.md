@@ -22,7 +22,7 @@ int main(void)
 // prints "Hi, Tom." to stdout.
 {% endhighlight %}
 
-Inline tables are done like so:
+Inline tables look like so:
 
 | Priority apples | Second priority | Third priority |
 |-------|--------|---------|
@@ -30,17 +30,17 @@ Inline tables are done like so:
 | pink lady | jazz | macintosh |
 | honeycrisp | granny smith | fuji |
 
-Inline figures are done like so:
+Inline figures look like so:
 
-- ![Logo Jekyll]({{site.url}}/assets/images/jekyll-logo.png )
+<!--- - ![Logo Jekyll]({{site.url}}/assets/images/jekyll-logo.png ) -->
 
-- ![Logo Jekyll]({{"/assets/images/jekyll-logo.png" | absolute_url}})
+<!--- - ![Logo Jekyll]({{"/assets/images/jekyll-logo.png" | absolute_url}}) -->
 
 - <img src="http://memofil.github.io/assets/images/categories/jekyll-logo.png" width="40" />
 
 - <img src="/assets/images/jekyll-logo.png" width="40" />
 
-- ![Logo Jekyll](/jekyll-logo.png)
+<!--- - ![Logo Jekyll](/jekyll-logo.png) -->
 
 Check out the [Jekyll docs][jekyll-docs] for more info on how to get the most out of Jekyll. File all bugs/feature requests at [Jekyll’s GitHub repo][jekyll-gh]. If you have questions, you can ask them on [Jekyll Talk][jekyll-talk].
 
