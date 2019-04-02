@@ -43,15 +43,12 @@ Inline figures look like so:
 
 <!--- - ![Logo Jekyll](/jekyll-logo.png) -->
 
-$\sum_{i=1}^m y^{(i)}$ 
 
-<script type="text/x-mathjax-config">
-MathJax.Hub.Config({
-  tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
-});
-</script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML' async></script>
 
-<script type="text/javascript" async src="path-to-mathjax/MathJax.js?config=TeX-AMS_CHTML"></script>
+$$\sum_{i=1}^m y^{(i)}$$
+
+$$x = {-b \pm \sqrt{b^2-4ac} \over 2a}.$$
 
 Check out the [Jekyll docs][jekyll-docs] for more info on how to get the most out of Jekyll and the [source](https://github.com/jekyll/minima) of the minima theme to see what a complete Jekyll site looks like. If you have questions, you can ask them on [Jekyll Talk][jekyll-talk]. 
 
