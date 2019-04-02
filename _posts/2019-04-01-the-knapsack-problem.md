@@ -34,17 +34,19 @@ value per weight object until no more objects can be added to the knapsack.
 
 For example, given three objects with weights $$w_1=3,\,w_2=4,\,w_3=2$$ and 
 values $$v_1=8,\,v_2=12,\,v_3=5$$ and $$W = 5$$. The value per weight scores 
-for these objects are $$s_1=2\frac{2}{3}$$, $$s_2=3$$, $$s_2=2\frac{1}{2}$$.  
+for these objects are $$s_1=2\frac{2}{3}$$, $$s_2=3$$, $$s_3=2\frac{1}{2}$$.  
 
 For the greedy approach one would therefore based on the scores try to first 
 choose object two, then object one and then object three. However, one can 
 only fit object two ($$w_2=4$$) in the knapsack. Adding either object one or 
 three ($$w_1=3,\,w_3=2$$) would make the knapsack heavier than $$W = 5$$. 
-Therefore, the greedy solution a knapsack value $$\{v_2\} = 12$$ 
+Therefore, the greedy solution is a knapsack value $$\{v_2\} = 12$$.
 
-The greedy solution is however often not optimal. In this example a better
-solution would be objects one and three with weight $$\{w_1=3,\,w_3=2\} = 5$$ and 
-value $$\{v_1=8,\,v_3=5\} = 13$$. 
+The greedy solution can be implemented ... 
+
+A greedy solution is however often not optimal. In the earlier three object,
+example, a better solution would be objects one and three with weight 
+$$\{w_1=3,\,w_3=2\} = 5$$ and value $$\{v_1=8,\,v_3=5\} = 13$$. 
 
 ## A Dynamic Programming Solution
 A solution that uses [dynamic programming](https://en.wikipedia.org/wiki/Dynamic_programming)
@@ -67,7 +69,7 @@ We can define $$m[i,w]$$ recursively as follows:
 The maximum value of the objects that can be packed in the knapsack may then 
 be found by calculating $$m[n,W]$$.
 
-This can be implemented ...
+The dynamic programming solution can be implemented ...
 
 
   
