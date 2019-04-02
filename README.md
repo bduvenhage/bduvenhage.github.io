@@ -1,2 +1,2 @@
 # bduvenhage.github.io
-Saving the world one line of code at a time.
+A blog on saving the world one line of code at a time.
