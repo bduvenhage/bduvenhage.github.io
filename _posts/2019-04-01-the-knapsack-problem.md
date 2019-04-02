@@ -7,21 +7,21 @@ categories: algorithms, dynamic programming
 ---
 
 The knapsack problem comes up quite often and it is important to know how 
-to solve it. For example, "Given a certain material budget and the cost 
+to solve it. For example, given a certain material budget and the cost 
 vs. perceived value of building various edges in a potential road network, 
-which edges should one build?". The goal is to optimise the perceived value 
+which edges should one build?. The goal is to optimise the perceived value 
 of the built roads within the fixed material budget. 
+
+I recently encountered the above problem within a TopCoder marathon
+match. This post discussed two solutions and the code that I'll reuse for 
+this problem in future.
 
 <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML' async></script>
 
-Given a collection of $$n$$ objects (each with a weight 
+In terms of a knapsack, given a collection of $$n$$ objects (each with a weight 
 $$w_i$$ and value $$v_i$$) as well as a knapsack that can carry a certain weight 
 $$W$$, which objects would you choose to pack? The goal is to optimise the total 
-value of the objects that one can fit into the weight budget of the knapsack. 
-
-I recently encountered the above problem within a TopCoder marathon
-match. Below is my solutions and the code that I'll reuse for this problem
-in future. 
+value of the objects that one can fit into the weight budget of the knapsack.  
 
 The below solutions are for the 0-1 knapsack problem which restricts the 
 number of 'copies' of each of the n objects to zero or one. 
