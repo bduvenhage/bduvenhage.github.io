@@ -6,18 +6,18 @@ comments: true
 categories: algorithms, dynamic programming
 ---
 
-<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML' async></script>
-
-The knapsack problem - "Given a collection of $$n$$ objects (each with a weight 
-$$w_i$$ and value $$v_i$$) as well as a knapsack that can carry a certain weight 
-$$W$$, which objects would you choose to pack?" The goal is to optimise the total 
-value of the objects that one can fit into the weight budget of the knapsack. 
-
 The knapsack problem comes up quite often and it is important to know how 
 to solve it. For example, "Given a certain material budget and the cost 
 vs. perceived value of building various edges in a potential road network, 
 which edges should one build?". The goal is to optimise the perceived value 
-of the built edges within the fixed material budget. 
+of the built roads within the fixed material budget. 
+
+<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML' async></script>
+
+Given a collection of $$n$$ objects (each with a weight 
+$$w_i$$ and value $$v_i$$) as well as a knapsack that can carry a certain weight 
+$$W$$, which objects would you choose to pack? The goal is to optimise the total 
+value of the objects that one can fit into the weight budget of the knapsack. 
 
 I recently encountered the above problem within a TopCoder marathon
 match. Below is my solutions and the code that I'll reuse for this problem
