@@ -43,8 +43,9 @@ Inline figures look like so:
 
 <!--- - ![Logo Jekyll](/jekyll-logo.png) -->
 
-
-<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML' async></script>
+Inline math look like so:
+<!--- Put the below script somewhere. -->
+<!--- <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML' async></script> -->
 
 $$\sum_{i=1}^m y^{(i)}$$
 
