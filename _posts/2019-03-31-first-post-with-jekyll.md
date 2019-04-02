@@ -6,7 +6,7 @@ comments: true
 categories: jekyll
 ---
 
-Jekyll is pretty cool. I followed the [Quickstart](https://jekyllrb.com/docs/) guide which generates a basic blog site using the minima theme. Once you push the site to your `https://github.com/<username>/<username>.github.io` repo, Github Pages will build your Jekyll site and make it available online at `<username>.github.io`.
+Jekyll is pretty cool. I followed the [Quickstart](https://jekyllrb.com/docs/) guide which generates a basic blog site using the minima theme. Once you push the site to your `https://github.com/<username>/<username>.github.io` repo, Github Pages will build your Jekyll site and make it available online at `<username>.github.io`. You can edit posts locally and see what the site looks like before pushing by running `bundle exec jekyll serv`.
 
 To add a new post, one simply pushes a markdown formatted post to the `_posts` directory that follows the convention `YYYY-MM-DD-name-of-post.md` and includes the necessary front matter. Take a look at the [source](https://raw.githubusercontent.com/bduvenhage/bduvenhage.github.io/master/_posts/2019-03-31-first-post-with-jekyll.md) for this post to get an idea of what the front matter looks like.
 
