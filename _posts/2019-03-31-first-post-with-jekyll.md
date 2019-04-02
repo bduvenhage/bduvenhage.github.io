@@ -51,7 +51,7 @@ $$\sum_{i=1}^m y^{(i)}$$
 
 $$x = {-b \pm \sqrt{b^2-4ac} \over 2a}.$$
 
-Check out the [Jekyll docs][jekyll-docs] for more info on how to get the most out of Jekyll and the [source](https://github.com/jekyll/minima) of the minima theme to see what a complete Jekyll site looks like. If you have questions, you can ask them on [Jekyll Talk][jekyll-talk]. 
+The GitHub help page on [setting up your github pages site locally with jekyll](https://help.github.com/en/articles/setting-up-your-github-pages-site-locally-with-jekyll) might be useful. Check out the [Jekyll docs][jekyll-docs] for more info on how to get the most out of Jekyll and the [source](https://github.com/jekyll/minima) of the minima theme to see what a complete Jekyll site looks like. If you have questions, you can ask them on [Jekyll Talk][jekyll-talk]. 
 
 [jekyll-docs]: https://jekyllrb.com/docs/home
 [jekyll-gh]:   https://github.com/jekyll/jekyll
