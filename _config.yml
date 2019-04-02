@@ -24,6 +24,9 @@ github_username: bduvenhage
 # linkedin_username:  bernardtduvenhage
 # twitter_username: bernardt_d
 
+disqus:
+  shortname: bduvenhage-me
+    
 # Build settings
 markdown: kramdown
 theme: minima
