@@ -9,11 +9,11 @@ categories: algorithms, dynamic programming
 The knapsack problem comes up quite often and it is important to know how 
 to solve it. For example, given a certain material budget and the cost 
 vs. perceived value of building various edges in a potential road network, 
-which edges should one build?. The goal is to optimise the perceived value 
+which edges should one build? The goal is to optimise the perceived value 
 of the built roads within the fixed material budget. 
 
-I recently encountered the above problem within a TopCoder marathon
-match. This post discussed two solutions and the code that I'll reuse for 
+I recently encountered this problem within a TopCoder marathon
+match. This post discusses two solutions and the code that I'll reuse for 
 this problem in future.
 
 <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML' async></script>
