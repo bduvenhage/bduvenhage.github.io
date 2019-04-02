@@ -20,12 +20,7 @@ description: >- # this means to ignore newlines until "baseurl:"
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "http://bduvenhage.me" # the base hostname & protocol for your site, e.g. http://example.com
 
-minima:
-  social_links:
-    github: bduvenhage
-    linkedin: bernardtduvenhage
-    twitter: bernardt_d
-# github_username: bduvenhage
+github_username: bduvenhage
 # linkedin_username:  bernardtduvenhage
 # twitter_username: bernardt_d
 
