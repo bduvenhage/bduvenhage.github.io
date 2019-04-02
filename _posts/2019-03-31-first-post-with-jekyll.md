@@ -50,6 +50,7 @@ MathJax.Hub.Config({
   tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
 });
 </script>
+
 <script type="text/javascript" async src="path-to-mathjax/MathJax.js?config=TeX-AMS_CHTML"></script>
 
 Check out the [Jekyll docs][jekyll-docs] for more info on how to get the most out of Jekyll and the [source](https://github.com/jekyll/minima) of the minima theme to see what a complete Jekyll site looks like. If you have questions, you can ask them on [Jekyll Talk][jekyll-talk]. 
