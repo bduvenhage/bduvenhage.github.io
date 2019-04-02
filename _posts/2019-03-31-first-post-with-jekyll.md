@@ -2,6 +2,7 @@
 layout: post
 title:  "First post with Jekyll"
 date:   2019-03-31
+comments: true
 categories: jekyll
 ---
 
