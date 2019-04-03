@@ -1,7 +1,7 @@
 ---
 layout: post
-title:  "The knapsack problem"
-date:   2019-04-02
+title:  "The knapsack problem" (in progress)
+date:   2019-04-03
 comments: true
 categories: algorithms, dynamic programming
 ---
@@ -42,9 +42,16 @@ only fit object two ($$w_2=4$$) in the knapsack. Adding either object one or
 three ($$w_1=3,\,w_3=2$$) would make the knapsack heavier than $$W = 5$$. 
 Therefore, the greedy solution is a knapsack value $$\{v_2\} = 12$$.
 
-The greedy solution can be implemented ... 
+The greedy solution can be implemented as shown below:
 
-A greedy solution is however often not optimal. In the earlier three object,
+{% highlight c++ %} 
+
+{% endhighlight %}
+
+
+The full source is available in a GitHub repo.
+
+A greedy solution is however often not always optimal. In the earlier three object,
 example, a better solution would be objects one and three with weight 
 $$\{w_1=3,\,w_3=2\} = 5$$ and value $$\{v_1=8,\,v_3=5\} = 13$$. 
 
@@ -67,11 +74,16 @@ We can define $$m[i,w]$$ recursively as follows:
 - $$m[i,\,w] = \max(m[i-1,\,w],\,m[i-1,w-w_{i}] + v_{i})$$ if $$w_{i} \leqslant w$$.
 
 The maximum value of the objects that can be packed in the knapsack may then 
-be found by calculating $$m[n,W]$$.
+be found by calculating $$m[n,W]$$. A key part of the solution is to tabulate 
+the intermediate results of $$m[i,w]$$.
 
-The dynamic programming solution can be implemented ...
+The dynamic programming solution can be implemented as shown below:
 
+{% highlight c++ %} 
 
+{% endhighlight %}
+
+The full source is available in a GitHub repo.
   
  
 
