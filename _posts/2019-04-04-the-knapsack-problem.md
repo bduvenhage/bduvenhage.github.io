@@ -107,10 +107,11 @@ The code to find the objects used in the solution is interesting and looks like:
 
   do {
       if (m[i][w] != m[i-1][w])
-      {//Object i (1 indexed) seems to have contributed to the weight and 
+      {//Object i (1 indexed) seems to have contributed to the value and 
        //must therefore be part of the solution.
-          object_used[i-1] = true;
-          w -= w[i-1];
+          object_used[i-1] = true; // i-1 gives zero indexed object!
+          w -= w[i-1]; // Subtract the weight of this object so that 
+                       // traversal continues from m[i-1][w - w[i-1]].
       }
       i -= 1;
   } while (i>0);
