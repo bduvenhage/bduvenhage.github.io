@@ -119,8 +119,8 @@ The code to find the objects used in the solution is interesting and looks like:
 Note that the dynamic programming solution is a lot slower than the greedy solution and 
 uses LOTS more memory. To solve the problem with knapsack weight of $$W$$ and $$n$$ objects 
 requires a table of size $$W \times n$$. The table size can quickly become
-prohibitive. I'll do a future post on using a search strategy like SA to find good solutions 
-to very big knapsack problems.
+prohibitive. I'll do a future post on using a search strategy like simulated annealing to 
+find good solutions to very big knapsack problems.
 
 The full [source](https://github.com/bduvenhage/Bits-O-Cpp/tree/master/knapsack) with execution timing
 is available in my Bits-O-Cpp repo. I use this repo as a reference for myself, but I'll
