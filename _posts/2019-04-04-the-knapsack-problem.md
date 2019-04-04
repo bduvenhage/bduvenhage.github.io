@@ -124,6 +124,6 @@ prohibitive. I'll do a future post on using a search strategy like simulated ann
 find good solutions to very big knapsack problems.
 
 The full [source](https://github.com/bduvenhage/Bits-O-Cpp/tree/master/knapsack) with execution timing
-is available in my Bits-O-Cpp repo. I use this repo as a reference for myself, but I'll
-try and also maintain there examples of how anyone can use those bits of sweet C++ code.
+is available in my Bits-O-Cpp repo. I use this repo as a reference for myself, but I aim
+to also maintain examples of how anyone can use those bits of sweet C++ code.
   
