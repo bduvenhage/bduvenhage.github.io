@@ -2,7 +2,7 @@
 layout: post
 title:  "The knapsack problem"
 date:   2019-04-04
-published: false
+published: true
 comments: true
 categories: [algorithms, dynamic programming]
 tags: [knapsack]
@@ -15,7 +15,7 @@ which edges should one build? The goal is to optimise the perceived value
 of the built roads within the fixed material budget. 
 
 I recently encountered this problem within a TopCoder marathon
-match. This post discusses two solutions and the code that I'll reuse for 
+match. This post discusses two solutions and the code that I'll likely reuse for 
 this problem in future.
 
 <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML' async></script>
@@ -38,54 +38,61 @@ For example, given three objects with weights $$w_1=3,\,w_2=4,\,w_3=2$$ and
 values $$v_1=8,\,v_2=12,\,v_3=5$$ and $$W = 5$$. The value per weight scores 
 for these objects are $$s_1=2\frac{2}{3}$$, $$s_2=3$$, $$s_3=2\frac{1}{2}$$.  
 
-For the greedy approach one would therefore based on the scores try to first 
+For a greedy approach one would try to first 
 choose object two, then object one and then object three. However, one can 
 only fit object two ($$w_2=4$$) in the knapsack. Adding either object one or 
 three ($$w_1=3,\,w_3=2$$) would make the knapsack heavier than $$W = 5$$. 
 Therefore, the greedy solution is a knapsack value $$\{v_2\} = 12$$.
 
-The greedy solution can be implemented as shown below:
-
-{% highlight c++ %} 
-
-{% endhighlight %}
-
-
-The full source is available in a GitHub repo.
-
-A greedy solution is however often not always optimal. In the earlier three object,
-example, a better solution would be objects one and three with weight 
-$$\{w_1=3,\,w_3=2\} = 5$$ and value $$\{v_1=8,\,v_3=5\} = 13$$. 
+A greedy solution is however often not optimal. A better solution would be 
+objects one and three with weight $$\{w_1=3,\,w_3=2\} = 5$$ and value 
+$$\{v_1=8,\,v_3=5\} = 13$$. 
 
 ## A Dynamic Programming Solution
 A solution that uses [dynamic programming](https://en.wikipedia.org/wiki/Dynamic_programming)
-exists that can find potentially higher valued optimal solutions. Dynamic 
+exists that can find the optimal solutions. Dynamic 
 programming refers to simplifying a complicated problem by breaking it down 
 into simpler sub-problems. Another 
 well known example of such a solution is 
 [Dijkstra's algorithm](https://en.wikipedia.org/wiki/Dijkstra%27s_algorithm) 
 for the shortest path problem.
 
-For the 0-1 knapsack problem define $$m[i,w]$$ to be the maximum value that 
-can be attained with weight less than or equal to $$w$$ using objects up 
-to $$i$$.
+For the 0-1 knapsack problem define $$m[n,W]$$ to be the maximum value that 
+can be attained with weight less than or equal to $$W$$ using the set of $$n$$ 
+objects.
 
 We can define $$m[i,w]$$ recursively as follows:
 - $$m[0,\,w] = 0$$,
 - $$m[i,\,w] = m[i-1,\,w]$$ if $$w_{i} > w$$,
 - $$m[i,\,w] = \max(m[i-1,\,w],\,m[i-1,w-w_{i}] + v_{i})$$ if $$w_{i} \leqslant w$$.
 
+The C++ code for this would look like:
+{% highlight c++ %} 
+  for (int i=1; i <= n; ++i) {
+      for (int w=0; w <= W_; ++w) {
+          if (w[i-1] > w) {
+              m[i][w] = m[i-1][w];
+          }
+          else {
+              m[i][w] = std::max(m[i-1][w], m[i-1][w-w[i-1]] + v[i-1]);
+          }
+      }
+  }
+{% endhighlight %}
+
+For the above three object example, $$m$$ ends up as a table of n+1 rows by W+1 columns:
+|     | w=0 | w=1 | w=2 | w=3 | w=4 | w=5 |
+|-----|-----|-----|-----|-----|-----|-----|
+| i=0 |0|0|0|0|0|0|
+| i=1 |0|0|0|8|8|8|
+| i=2 |0|0|0|8|12|12|
+| i=3 |0|0|5|8|12|13|
+
 The maximum value of the objects that can be packed in the knapsack may then 
 be found by calculating $$m[n,W]$$. A key part of the solution is to tabulate 
 the intermediate results of $$m[i,w]$$.
 
-The dynamic programming solution can be implemented as shown below:
-
-{% highlight c++ %} 
-
-{% endhighlight %}
-
-The full source is available in a GitHub repo.
+The full [source](https://github.com/bduvenhage/Bits-O-Cpp/tree/master/knapsack) is 
+available in my Bits-O-Cpp repo. I use this repo as a reference for myself, but I'll
+try and add more examples of how anyone can use those bits of sweet C++ code.
   
- 
-
