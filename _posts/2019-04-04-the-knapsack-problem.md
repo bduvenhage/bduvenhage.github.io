@@ -71,15 +71,19 @@ We can define $$m[i,w]$$ recursively as follows:
 The maximum value of the objects that can be packed in the knapsack may then 
 be found by calculating $$m[n,W]$$. The C++ code for this would look like:
 {% highlight c++ %}
+  for (int w=0; w <= W_; ++w) {
+    m[0][w] = 0;
+  }
+  
   for (int i=1; i <= n; ++i) {
-      for (int w=0; w <= W; ++w) {
-          if (w[i-1] > w) {
-              m[i][w] = m[i-1][w];
-          }
-          else {
-              m[i][w] = std::max(m[i-1][w], m[i-1][w-w[i-1]] + v[i-1]);
-          }
-      }
+    for (int w=0; w <= W; ++w) {
+        if (w[i-1] > w) {
+            m[i][w] = m[i-1][w];
+        }
+        else {
+            m[i][w] = std::max(m[i-1][w], m[i-1][w-w[i-1]] + v[i-1]);
+        }
+    }
   }
 {% endhighlight %}
 
