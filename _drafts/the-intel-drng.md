@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "The Intel DRNG"
-<!--- date:   2019-04-00 --->
+date: 2019-04-01
 published: true
 comments: true
 categories: [rng]
