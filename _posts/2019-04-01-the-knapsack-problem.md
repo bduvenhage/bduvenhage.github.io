@@ -66,10 +66,11 @@ We can define $$m[i,w]$$ recursively as follows:
 - $$m[i,\,w] = m[i-1,\,w]$$ if $$w_{i} > w$$,
 - $$m[i,\,w] = \max(m[i-1,\,w],\,m[i-1,w-w_{i}] + v_{i})$$ if $$w_{i} \leqslant w$$.
 
-The C++ code for this would look like:
+The maximum value of the objects that can be packed in the knapsack may then 
+be found by calculating $$m[n,W]$$. The C++ code for this would look like:
 {% highlight c++ %} 
   for (int i=1; i <= n; ++i) {
-      for (int w=0; w <= W_; ++w) {
+      for (int w=0; w <= W; ++w) {
           if (w[i-1] > w) {
               m[i][w] = m[i-1][w];
           }
@@ -80,7 +81,8 @@ The C++ code for this would look like:
   }
 {% endhighlight %}
 
-For the above three object example, $$m$$ ends up as a table of n+1 rows by W+1 columns:
+For the above three object example, $$m$$ ends up as a table of $$n+1 rows by $$W+1$$ 
+columns:
 
 |     | w=0 | w=1 | w=2 | w=3 | w=4 | w=5 |
 |-----|-----|-----|-----|-----|-----|-----|
@@ -91,11 +93,28 @@ For the above three object example, $$m$$ ends up as a table of n+1 rows by W+1 
 
 From the table one can see that $$m[3,5]$$ is a knapsack of value 13.
 
-The maximum value of the objects that can be packed in the knapsack may then 
-be found by calculating $$m[n,W]$$. A key part of the solution is to tabulate 
-the intermediate results of $$m[i,w]$$.
+The code to find the objects used in the solution is interesting and looks like:
+{% highlight c++ %} 
+  int i = n;
+  int w = W;
 
-The full [source](https://github.com/bduvenhage/Bits-O-Cpp/tree/master/knapsack) is 
-available in my Bits-O-Cpp repo. I use this repo as a reference for myself, but I'll
+  do {
+      if (m[i][w] != m[i-1][w])
+      {//Object i (1 indexed) seems to have contributed to the weight and must therefore be part of the solution.
+          object_used[i-1] = true;
+          w -= w[i-1];
+      }
+      i -= 1;
+  } while (i>0);
+{% endhighlight %}
+
+Note that the dynamic programming solution is a lot slower than the greedy solution and 
+uses LOTS more memory. To solve the problem with knapsack weight of $$W$$ and number of 
+objects $$n$$ requires a table of size $$W \x n$$ which can quickly become
+prohibitive. I'll do a future post on a solution using a search strategy like SA to find 
+a good solution to very big knapsack problems.
+
+The full [source](https://github.com/bduvenhage/Bits-O-Cpp/tree/master/knapsack) with execution timing
+is available in my Bits-O-Cpp repo. I use this repo as a reference for myself, but I'll
 try and add more examples of how anyone can use those bits of sweet C++ code.
   
