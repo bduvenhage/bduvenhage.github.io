@@ -32,7 +32,9 @@ More formally, the goal is to maximize $$\sum _{i=1}^{n}v_{i}x_{i}$$ subject to 
 
 ## A Greedy Approximate Solution
 The 'greedy' approach to solving the problem is to repeatedly choose the best 
-value per weight object until no more objects can be added to the knapsack.
+value per weight object until no more objects can be added to the knapsack. This
+solution has a complexity of $$O(nm)$$ for m the number of items that typically fit 
+into the knapsack.
 
 For example, given three objects with weights $$w_1=3,\,w_2=4,\,w_3=2$$ and 
 values $$v_1=8,\,v_2=12,\,v_3=5$$ and $$W = 5$$. The value per weight scores 
@@ -44,13 +46,13 @@ only fit object two ($$w_2=4$$) in the knapsack. Adding either object one or
 three ($$w_1=3,\,w_3=2$$) would make the knapsack heavier than $$W = 5$$. 
 Therefore, the greedy solution is a knapsack value $$\{v_2\} = 12$$.
 
-A greedy solution is however often not optimal. A better solution would be 
-objects one and three with weight $$\{w_1=3,\,w_3=2\} = 5$$ and value 
+A greedy solution is however often not optimal. A better solution would have been 
+to rather pack objects one and three with weight $$\{w_1=3,\,w_3=2\} = 5$$ and value 
 $$\{v_1=8,\,v_3=5\} = 13$$. 
 
 ## A Dynamic Programming Solution
 A solution that uses [dynamic programming](https://en.wikipedia.org/wiki/Dynamic_programming)
-exists that can find the optimal solutions. Dynamic 
+exists that can find the optimal solution. Dynamic 
 programming refers to simplifying a complicated problem by breaking it down 
 into simpler sub-problems. Another 
 well known example of such a solution is 
@@ -68,7 +70,7 @@ We can define $$m[i,w]$$ recursively as follows:
 
 The maximum value of the objects that can be packed in the knapsack may then 
 be found by calculating $$m[n,W]$$. The C++ code for this would look like:
-{% highlight c++ %} 
+{% highlight c++ %}
   for (int i=1; i <= n; ++i) {
       for (int w=0; w <= W; ++w) {
           if (w[i-1] > w) {
@@ -81,7 +83,7 @@ be found by calculating $$m[n,W]$$. The C++ code for this would look like:
   }
 {% endhighlight %}
 
-For the above three object example, $$m$$ ends up as a table of $$n+1 rows by $$W+1$$ 
+For the above three object example, $$m$$ ends up as a table of $$n+1$$ rows by $$W+1$$ 
 columns:
 
 |     | w=0 | w=1 | w=2 | w=3 | w=4 | w=5 |
@@ -91,10 +93,11 @@ columns:
 | i=2 |0|0|0|8|12|12|
 | i=3 |0|0|5|8|12|13|
 
-From the table one can see that $$m[3,5]$$ is a knapsack of value 13.
+From the table one can see that $$m[3,5]$$ is a knapsack of value 13 and building the table 
+has a time complexity of $$O(nW)$$.
 
 The code to find the objects used in the solution is interesting and looks like:
-{% highlight c++ %} 
+{% highlight c++ %}
   int i = n;
   int w = W;
 
@@ -110,12 +113,12 @@ The code to find the objects used in the solution is interesting and looks like:
 {% endhighlight %}
 
 Note that the dynamic programming solution is a lot slower than the greedy solution and 
-uses LOTS more memory. To solve the problem with knapsack weight of $$W$$ and number of 
-objects $$n$$ requires a table of size $$W \cross n$$ which can quickly become
-prohibitive. I'll do a future post on a solution using a search strategy like SA to find 
-a good solution to very big knapsack problems.
+uses LOTS more memory. To solve the problem with knapsack weight of $$W$$ and $$n$$ objects 
+requires a table of size $$W \cross n$$. The table size can quickly become
+prohibitive. I'll do a future post on using a search strategy like SA to find good solutions 
+to very big knapsack problems.
 
 The full [source](https://github.com/bduvenhage/Bits-O-Cpp/tree/master/knapsack) with execution timing
 is available in my Bits-O-Cpp repo. I use this repo as a reference for myself, but I'll
-try and add more examples of how anyone can use those bits of sweet C++ code.
+try and also add examples of how anyone can use those bits of sweet C++ code.
   
