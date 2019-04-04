@@ -1,7 +1,8 @@
 ---
 layout: post
-title:  "The knapsack problem" (in progress)
-date:   2019-04-03
+title:  "The knapsack problem"
+date:   2019-04-04
+published: false
 comments: true
 categories: [algorithms, dynamic programming]
 tags: [knapsack]
