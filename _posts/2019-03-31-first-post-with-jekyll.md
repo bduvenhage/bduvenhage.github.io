@@ -3,7 +3,8 @@ layout: post
 title:  "First post with Jekyll"
 date:   2019-03-31
 comments: true
-categories: jekyll
+categories: [jekyll]
+tags: [first post, quickstart]
 ---
 
 Jekyll is pretty cool. I followed the [Quickstart](https://jekyllrb.com/docs/) guide which generates a basic blog site using the minima theme. Once you push the source to your `https://github.com/<username>/<username>.github.io` repo, Github Pages will build your site and make it available online at `<username>.github.io`. You can see what the site looks like locally before pushing by running `bundle exec jekyll serv` and pointing your browser at `127.0.0.1:4000`.
