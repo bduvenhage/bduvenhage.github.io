@@ -81,12 +81,15 @@ The C++ code for this would look like:
 {% endhighlight %}
 
 For the above three object example, $$m$$ ends up as a table of n+1 rows by W+1 columns:
+
 |     | w=0 | w=1 | w=2 | w=3 | w=4 | w=5 |
 |-----|-----|-----|-----|-----|-----|-----|
 | i=0 |0|0|0|0|0|0|
 | i=1 |0|0|0|8|8|8|
 | i=2 |0|0|0|8|12|12|
 | i=3 |0|0|5|8|12|13|
+
+From the table one can see that $$m[3,5]$$ is a knapsack of value 13.
 
 The maximum value of the objects that can be packed in the knapsack may then 
 be found by calculating $$m[n,W]$$. A key part of the solution is to tabulate 
