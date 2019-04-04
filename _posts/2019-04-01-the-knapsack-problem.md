@@ -3,7 +3,8 @@ layout: post
 title:  "The knapsack problem" (in progress)
 date:   2019-04-03
 comments: true
-categories: algorithms, dynamic programming
+categories: [algorithms, dynamic programming]
+tags: [knapsack]
 ---
 
 The knapsack problem comes up quite often and it is important to know how 
