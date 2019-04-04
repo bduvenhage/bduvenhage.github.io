@@ -100,7 +100,8 @@ The code to find the objects used in the solution is interesting and looks like:
 
   do {
       if (m[i][w] != m[i-1][w])
-      {//Object i (1 indexed) seems to have contributed to the weight and must therefore be part of the solution.
+      {//Object i (1 indexed) seems to have contributed to the weight and 
+       //must therefore be part of the solution.
           object_used[i-1] = true;
           w -= w[i-1];
       }
@@ -110,7 +111,7 @@ The code to find the objects used in the solution is interesting and looks like:
 
 Note that the dynamic programming solution is a lot slower than the greedy solution and 
 uses LOTS more memory. To solve the problem with knapsack weight of $$W$$ and number of 
-objects $$n$$ requires a table of size $$W \x n$$ which can quickly become
+objects $$n$$ requires a table of size $$W \cross n$$ which can quickly become
 prohibitive. I'll do a future post on a solution using a search strategy like SA to find 
 a good solution to very big knapsack problems.
 
