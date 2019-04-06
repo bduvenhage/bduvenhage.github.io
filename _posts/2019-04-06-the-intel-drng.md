@@ -63,7 +63,7 @@ bool is_drng_supported() {
 {% endhighlight %}
 
 ## Using RDRAND and RDSEED
-The RDRAND and RDSEED instructions may be called as shown below. The size of the operand register determines whether 16-, 32- or 64-bit random numbers are returned. If the carry flag is set after a DRNG instruction it means a random number wasn't available yet and the software should retry if a random number is required. From the Intel guide: "On real-world systems, a single thread executing RDRAND continuously may see throughputs ranging from 70 to 200 MB/sec, depending on the SPU architecture."
+The RDRAND and RDSEED instructions may be called as shown below. The size of the operand register determines whether 16-, 32- or 64-bit random numbers are returned. If the carry flag is set after a DRNG instruction it means a random number wasn't available yet and the software should retry if a random number is required. 
 
 Similar to a splitmix64_stateless generator, rdseed64 may be used to seed RNGs:
 {% highlight c++ %}
@@ -152,7 +152,10 @@ public:
 {% endhighlight %}
 
 ## Performance Results:
+From the Intel guide: "On real-world systems, a single thread executing RDRAND continuously may see throughputs ranging from 70 to 200 MB/sec, depending on the SPU architecture." 
+
 I ran some performance measurements on my laptop (which is a 2.9 GHz Intel Core i5 and does cpu_ticks_per_ns = 2.89991):
+
 {% highlight c++ %}
 int main() {
     const uint32_t rng_seed_ = 0;
