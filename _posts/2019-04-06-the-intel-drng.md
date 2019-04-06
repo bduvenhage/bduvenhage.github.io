@@ -207,4 +207,4 @@ cpu_ticks_per_number = 1292.73
 mbits_per_second = 143.5672
 ```
 
-The above code is also available in my [Bits-O-Cpp GitHub repo](https://github.com/bduvenhage/Bits-O-Cpp/tree/master/random).
+The full code is also available in my [Bits-O-Cpp GitHub repo](https://github.com/bduvenhage/Bits-O-Cpp/tree/master/random).
