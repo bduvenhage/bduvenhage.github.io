@@ -12,9 +12,9 @@ I recently got around to testing Intel's Digital Random Number Generator (DRNG).
 
 The RDRAND and RDSEED instructions address the need for a fast source of entropy. From Intel's [Software Implementation Guide](https://software.intel.com/en-us/articles/intel-digital-random-number-generator-drng-software-implementation-guide): "The DRNG using the RDRAND instruction is useful for generating high-quality keys for cryptographic protocols, and the RDSEED instruction is provided for seeding software-based pseudorandom number generators (PRNGs)."
 
-Section 2 of their guide gives an overview of Random Number Generators (RNGs). For another overview of RNGs watch the excellent [talk by Melissa O'Neill](http://www.pcg-random.org/posts/stanford-colloquium-talk.html), or watch [my talk](https://www.youtube.com/watch?v=jWXZ07YBsPM&feature=youtu.be). I've also found [Daniel Lemire's blog](https://lemire.me/blog/?s=random) to be an excellent resource on implementing RNGs.
+Section 2 of the software implementation guide gives an overview of Random Number Generators (RNGs). For another overview of RNGs watch the excellent [talk by Melissa O'Neill](http://www.pcg-random.org/posts/stanford-colloquium-talk.html), or watch [my talk](https://www.youtube.com/watch?v=jWXZ07YBsPM&feature=youtu.be). I've also found [Daniel Lemire's blog](https://lemire.me/blog/?s=random) to be an excellent resource on implementing RNGs.
 
-Section 3 of the Intel guide gives an overview of how Intel's DRNG works. Thermal noise is the fundamental source of entropy. A hardware CSPRNG (Cryptographically secure PRNG) digital random bit generator feeds the RDRAND instructions over all cores while an ENRNG (Enhanced Non-deterministic Random Number Generator) feeds the RDSEED instructions over all cores. The RDRAND generator is continuously reseeded from the hardare entropy source while the RDSEED generator makes conditioned entropy samples directly available. 
+Section 3 of the software implementation guide gives an overview of how Intel's DRNG works. Thermal noise is the fundamental source of entropy. A hardware CSPRNG (Cryptographically secure PRNG) digital random bit generator feeds the RDRAND instructions over all cores while an ENRNG (Enhanced Non-deterministic Random Number Generator) feeds the RDSEED instructions over all cores. The RDRAND DRNG is continuously reseeded from the hardare entropy source while the RDSEED generator makes conditioned entropy samples directly available. 
 
 ## Determining Support for Intel's DRNG
 Support for RDRAND can be determined by examining bit 30 of the ECX register returned by CPUID, and support for RDSEED can be determined by examining bit 18 of the EBX register.
@@ -63,9 +63,9 @@ bool is_drng_supported() {
 {% endhighlight %}
 
 ## Using RDRAND and RDSEED
-The RDRAND and RDSEED instructions may be called as shown below. The size of the operand register determines whether 16-, 32- or 64-bit random numbers are returned. If the carry flag is set after a DRNG instruction it means a random number wasn't available yet and the software should retry if a random number is required. 
+The RDRAND and RDSEED instructions may be called as shown below. The size of the operand register determines whether 16-, 32- or 64-bit random numbers are returned. If the carry flag is zero after a DRNG instruction it means a random number wasn't available yet and the software should retry if a random number is still required. 
 
-Similar to a splitmix64_stateless generator, rdseed64 may be used to seed RNGs:
+Similar to a splitmix64_stateless generator, the rdseed64 generator below may be used to seed RNGs:
 {% highlight c++ %}
 //! Stateless [0,2^64) splitmix64 by Daniel Lemire https://github.com/lemire/testingRNG . Useful for seeding RNGs.
 ALWAYS_INLINE uint64_t splitmix64_stateless(const uint64_t index) {// 1.3 ns on local.
@@ -92,7 +92,7 @@ ALWAYS_INLINE uint64_t rdseed64() { // 450 ns on local.
 }
 {% endhighlight %}
 
-The assmebler for rdseed64 would look similar to the below snippet. Notice the 'pause' instruction which is recommended by Intel so that the core can perhaps still do other work while waiting for a random number.
+The assembler for the above rdseed64 generator would look similar to the below snippet. Notice the 'pause' instruction which is recommended by Intel so that the core can perhaps still do other work while waiting for a random number.
 
 {% highlight nasm %}
 rdseed64():
@@ -106,7 +106,7 @@ rdseed64():
   ret
 {% endhighlight %}
 
-Below is a Lehmer RNG for reference and an Intel 32-bit DRNG using RDRAND:
+Below is a Lehmer RNG class for reference and an Intel 32-bit DRNG class using RDRAND:
 {% highlight c++ %}
 //! Lehmer RNG with 64bit multiplier, derived from https://github.com/lemire/testingRNG.
 class TC_MCG_Lehmer_RandFunc32 {
@@ -153,9 +153,9 @@ public:
 {% endhighlight %}
 
 ## Performance Results:
-From the Intel guide: "On real-world systems, a single thread executing RDRAND continuously may see throughputs ranging from 70 to 200 MB/sec, depending on the SPU architecture." 
+In the Intel software implementation guide it is stated that "On real-world systems, a single thread executing RDRAND continuously may see throughputs ranging from 70 to 200 MB/sec, depending on the SPU architecture." 
 
-I ran some performance measurements on my laptop (which is a 2.9 GHz Intel Core i5 and does cpu_ticks_per_ns = 2.89991):
+I also ran some performance measurements on my laptop (which is a 2.9 GHz Intel Core i5 and does cpu_ticks_per_ns = 2.89991):
 
 {% highlight c++ %}
 int main() {
@@ -214,7 +214,7 @@ cpu_ticks_per_number = 1292.73
 mbits_per_second = 143.5672
 ```
 
-RDRAND and RDSEED is slower than the Lehmar generator. However, it provides cryptographically secure hardware entropy based random numbers significantly faster than seems to be otherwise possible.
+RDRAND and RDSEED is slower than, for example, the Lehmar generator. However, it provides cryptographically secure hardware entropy based random numbers significantly faster than seems to be otherwise possible.
 
 ## The Code
-The full code is available in my [Bits-O-Cpp GitHub repo](https://github.com/bduvenhage/Bits-O-Cpp/tree/master/random). This code uses some headers for timing and platform info from the repo, but the Bits-O-Cpp/random/README.md file contains info on how to compile the example.
+The full code is available in my [Bits-O-Cpp GitHub repo](https://github.com/bduvenhage/Bits-O-Cpp/tree/master/random). That code uses some headers for timing and platform info from the repo, but the Bits-O-Cpp/random/README.md file contains info on how to compile the example.
