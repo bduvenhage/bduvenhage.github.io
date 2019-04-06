@@ -98,7 +98,7 @@ The assmebler for rdseed64 would look similar to the below snippet. Notice the '
 rdseed64():
       jmp .L6
   .L3:
-      pause;
+      pause
   .L6:
       rdseed rax; setc dl
       test dl, dl
