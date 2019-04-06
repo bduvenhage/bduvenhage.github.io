@@ -5,7 +5,7 @@ date: 2019-04-06
 published: true
 comments: true
 categories: [rng]
-tags: [Intel DRNG]
+tags: [Intel, DRNG]
 ---
 
 I recently got around to testing Intel's Digital Random Number Generator (DRNG). Intel Secure Key (code-named Bull Mountain Technology) is the name for the Intel® 64 and IA-32 Architectures instructions RDRAND and RDSEED and the underlying hardware implementation. 
