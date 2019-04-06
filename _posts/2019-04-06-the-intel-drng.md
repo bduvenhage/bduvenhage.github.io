@@ -149,7 +149,7 @@ public:
 };
 {% endhighlight %}
 
-I ran some performance measurements on my laptop which is a 2.9 GHz Intel Core i5 and does cpu_ticks_per_ns = 2.89991:
+I ran some performance measurements on my laptop (which is a 2.9 GHz Intel Core i5 and does cpu_ticks_per_ns = 2.89991):
 {% highlight c++ %}
 int main() {
     const uint32_t rng_seed_ = 0;
