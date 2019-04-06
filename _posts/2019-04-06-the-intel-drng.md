@@ -167,7 +167,7 @@ int main() {
     TC_IntelDRNG_RandFunc32 intel_rng_(rng_seed_);
 
     std::cout << "Generating some random numbers...";    
-    TCTimer::init_timer(2.89992e+09);
+    TCTimer::init_timer(2.89992e+09); // The param is the initial guess of your CPU's clock rate in GHz.
     
     const uint64_t num_iterations = uint64_t(1) << 27;
     uint32_t ri = 0;    
@@ -179,7 +179,7 @@ int main() {
         //ri += rdseed64();
     }
     
-    const double end_time = TCTimer::sync_tsc_time(); // Same as get_time(), but also estimates CPU's seconds_per_tick_.    
+    const double end_time = TCTimer::sync_tsc_time(); // Same as get_time(), but also estimates CPU's seconds_per_tick_!    
     std::cout << "done.\n";
     std::cout << ri << "\n"; // Print the sum so that the RNG doesn't get optimised out.
     
