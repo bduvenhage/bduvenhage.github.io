@@ -10,11 +10,11 @@ tags: [Intel, DRNG]
 
 I recently got around to testing Intel's Digital Random Number Generator (DRNG). Intel Secure Key (code-named Bull Mountain Technology) is the name for the Intel® 64 and IA-32 Architectures instructions RDRAND and RDSEED and the underlying hardware implementation. 
 
-The RDRAND and RDSEED instructions address the need for a fast source of entropy. From Intel's [Software Implementation Guide](https://software.intel.com/en-us/articles/intel-digital-random-number-generator-drng-software-implementation-guide): "The DRNG using the RDRAND instruction is useful for generating high-quality keys for cryptographic protocols, and the RSEED instruction is provided for seeding software-based pseudorandom number generators (PRNGs)."
+The RDRAND and RDSEED instructions address the need for a fast source of entropy. From Intel's [Software Implementation Guide](https://software.intel.com/en-us/articles/intel-digital-random-number-generator-drng-software-implementation-guide): "The DRNG using the RDRAND instruction is useful for generating high-quality keys for cryptographic protocols, and the RDSEED instruction is provided for seeding software-based pseudorandom number generators (PRNGs)."
 
 Section 2 of their guide gives an overview of Random Number Generators (RNGs). For another overview of RNGs watch the excellent [talk by Melissa O'Neill](http://www.pcg-random.org/posts/stanford-colloquium-talk.html), or watch [my talk](https://www.youtube.com/watch?v=jWXZ07YBsPM&feature=youtu.be). I've also found [Daniel Lemire's blog](https://lemire.me/blog/?s=random) to be an excellent resource on implementing RNGs.
 
-Section 3 gives an overview of how Intel's DRNG works. Thermal noise is the fundamental source of entropy. A hardware CSPRNG (Cryptographically secure PRNG) digital random bit generator feeds the RDRAND instructions over all cores while an ENRNG (Enhanced Non-deterministic Random Number Generator) feeds the RDSEED instructions over all cores. The RDRAND generator is continuously reseeding from the hardare entropy source while the RDSEED generator makes conditioned entropy samples directly available. 
+Section 3 gives an overview of how Intel's DRNG works. Thermal noise is the fundamental source of entropy. A hardware CSPRNG (Cryptographically secure PRNG) digital random bit generator feeds the RDRAND instructions over all cores while an ENRNG (Enhanced Non-deterministic Random Number Generator) feeds the RDSEED instructions over all cores. The RDRAND generator is continuously reseeded from the hardare entropy source while the RDSEED generator makes conditioned entropy samples directly available. 
 
 Support for RDRAND can be determined by examining bit 30 of the ECX register returned by CPUID, and support for RDSEED can be determined by examining bit 18 of the EBX register.
 
@@ -61,7 +61,7 @@ bool is_drng_supported() {
 }
 {% endhighlight %}
 
-The RDRAND and RDSEED instructions may be called as shown below. The size of the operand register determines whether 16-, 32- or 64-bit random numbers are returned. If the carry flag is set after a DRNG instruction it means a random number wasn't available yet and the software should retry of a random number is required. From the Intel guide: "On real-world systems, a single thread executing RDRAND continuously may see throughputs ranging from 70 to 200 MB/sec, depending on the SPU architecture."
+The RDRAND and RDSEED instructions may be called as shown below. The size of the operand register determines whether 16-, 32- or 64-bit random numbers are returned. If the carry flag is set after a DRNG instruction it means a random number wasn't available yet and the software should retry if a random number is required. From the Intel guide: "On real-world systems, a single thread executing RDRAND continuously may see throughputs ranging from 70 to 200 MB/sec, depending on the SPU architecture."
 
 Similar to a splitmix64_stateless generator, rdseed64 may be used to seed RNGs:
 {% highlight c++ %}
@@ -149,7 +149,42 @@ public:
 };
 {% endhighlight %}
 
-I ran some performance measurements on my laptop which is a 2.9 GHz Intel Core i5 and cpu_ticks_per_ns = 2.89991.
+I ran some performance measurements on my laptop which is a 2.9 GHz Intel Core i5 and does cpu_ticks_per_ns = 2.89991:
+{% highlight c++ %}
+int main() {
+    const uint32_t rng_seed_ = 0;
+    TC_MCG_Lehmer_RandFunc32 lehmer_rng(rng_seed_);
+    
+    //Should check is_intel_cpu()
+    //Should check is_drng_supported()
+    TC_IntelDRNG_RandFunc32 intel_rng_(rng_seed_);
+
+    std::cout << "Generating some random numbers...";    
+    TCTimer::init_timer(2.89992e+09);
+    
+    const uint64_t num_iterations = uint64_t(1) << 27;
+    uint32_t ri = 0;    
+    const double start_time = TCTimer::get_time();
+
+    for (uint64_t i=0; i <= num_iterations; ++i) {
+        //ri += lehmer_rng();
+        ri += intel_rng_();
+        //ri += rdseed64();
+    }
+    
+    const double end_time = TCTimer::sync_tsc_time(); // Same as get_time(), but also estimates CPU's seconds_per_tick_.    
+    std::cout << "done.\n";
+    std::cout << ri << "\n"; // Print the sum so that the RNG doesn't get optimised out.
+    
+    const double cpu_ticks_per_ns = TCTimer::get_clock_freq() * 0.000000001;
+    const double ns_per_iteration = (end_time-start_time) / num_iterations * 1000000000.0;
+    const double cpu_ticks_per_iteration = cpu_ticks_per_ns * ns_per_iteration;    
+    const double millions_numbers_per_second = num_iterations / (end_time-start_time) * 0.000001;   
+
+    return 0;
+}
+{% endhighlight %}
+
 
 Result for lehmar64:
 ```
