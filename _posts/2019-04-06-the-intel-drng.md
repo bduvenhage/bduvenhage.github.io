@@ -14,7 +14,7 @@ The RDRAND and RDSEED instructions address the need for a fast source of entropy
 
 Section 2 of their guide gives an overview of Random Number Generators (RNGs). For another overview of RNGs watch the excellent [talk by Melissa O'Neill](http://www.pcg-random.org/posts/stanford-colloquium-talk.html), or watch [my talk](https://www.youtube.com/watch?v=jWXZ07YBsPM&feature=youtu.be). I've also found [Daniel Lemire's blog](https://lemire.me/blog/?s=random) to be an excellent resource on implementing RNGs.
 
-Section 3 gives an overview of how Intel's DRNG works. Thermal noise is the fundamental source of entropy. A hardware CSPRNG (Cryptographically secure PRNG) digital random bit generator feeds the RDRAND instructions over all cores while an ENRNG (Enhanced Non-deterministic Random Number Generator) feeds the RDSEED instructions over all cores. The RDRAND generator is continuously reseeded from the hardare entropy source while the RDSEED generator makes conditioned entropy samples directly available. 
+Section 3 of the Intel guide gives an overview of how Intel's DRNG works. Thermal noise is the fundamental source of entropy. A hardware CSPRNG (Cryptographically secure PRNG) digital random bit generator feeds the RDRAND instructions over all cores while an ENRNG (Enhanced Non-deterministic Random Number Generator) feeds the RDSEED instructions over all cores. The RDRAND generator is continuously reseeded from the hardare entropy source while the RDSEED generator makes conditioned entropy samples directly available. 
 
 ## Determining Support for Intel's DRNG
 Support for RDRAND can be determined by examining bit 30 of the ECX register returned by CPUID, and support for RDSEED can be determined by examining bit 18 of the EBX register.
