@@ -84,7 +84,8 @@ ALWAYS_INLINE uint64_t rdseed64() { // 450 ns on local.
                   : "=r" (rand), "=qm" (ok));
     
     while (!ok) {
-        asm volatile ("pause; rdseed %0; setc %1"
+        asm volatile ("pause" : );
+        asm volatile ("rdseed %0; setc %1"
                       : "=r" (rand), "=qm" (ok));
     }
     return rand;
