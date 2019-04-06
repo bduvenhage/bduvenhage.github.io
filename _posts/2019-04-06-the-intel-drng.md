@@ -16,6 +16,7 @@ Section 2 of their guide gives an overview of Random Number Generators (RNGs). F
 
 Section 3 gives an overview of how Intel's DRNG works. Thermal noise is the fundamental source of entropy. A hardware CSPRNG (Cryptographically secure PRNG) digital random bit generator feeds the RDRAND instructions over all cores while an ENRNG (Enhanced Non-deterministic Random Number Generator) feeds the RDSEED instructions over all cores. The RDRAND generator is continuously reseeded from the hardare entropy source while the RDSEED generator makes conditioned entropy samples directly available. 
 
+## Determining Support for Intel's DRNG
 Support for RDRAND can be determined by examining bit 30 of the ECX register returned by CPUID, and support for RDSEED can be determined by examining bit 18 of the EBX register.
 
 {% highlight c++ %}
@@ -61,6 +62,7 @@ bool is_drng_supported() {
 }
 {% endhighlight %}
 
+## Using RDRAND and RDSEED
 The RDRAND and RDSEED instructions may be called as shown below. The size of the operand register determines whether 16-, 32- or 64-bit random numbers are returned. If the carry flag is set after a DRNG instruction it means a random number wasn't available yet and the software should retry if a random number is required. From the Intel guide: "On real-world systems, a single thread executing RDRAND continuously may see throughputs ranging from 70 to 200 MB/sec, depending on the SPU architecture."
 
 Similar to a splitmix64_stateless generator, rdseed64 may be used to seed RNGs:
@@ -149,6 +151,7 @@ public:
 };
 {% endhighlight %}
 
+## Performance Results:
 I ran some performance measurements on my laptop (which is a 2.9 GHz Intel Core i5 and does cpu_ticks_per_ns = 2.89991):
 {% highlight c++ %}
 int main() {
@@ -206,5 +209,5 @@ ns_per_number = 445.784
 cpu_ticks_per_number = 1292.73
 mbits_per_second = 143.5672
 ```
-
-The full code is also available in my [Bits-O-Cpp GitHub repo](https://github.com/bduvenhage/Bits-O-Cpp/tree/master/random).
+## The Code
+The full code is available in my [Bits-O-Cpp GitHub repo](https://github.com/bduvenhage/Bits-O-Cpp/tree/master/random). This code uses some headers for timing and platform info from the repo, but the Bits-O-Cpp/random/README.md file contains info on how to compile the example.
