@@ -212,5 +212,8 @@ ns_per_number = 445.784
 cpu_ticks_per_number = 1292.73
 mbits_per_second = 143.5672
 ```
+
+RDRAND and RDSEED is slower than the Lehmar generator. However it provides cryptographically secure hardware entropy based random numbers significantly faster than seems to be otherwise possible.
+
 ## The Code
 The full code is available in my [Bits-O-Cpp GitHub repo](https://github.com/bduvenhage/Bits-O-Cpp/tree/master/random). This code uses some headers for timing and platform info from the repo, but the Bits-O-Cpp/random/README.md file contains info on how to compile the example.
