@@ -8,13 +8,13 @@ categories: [rng]
 tags: [Intel, DRNG]
 ---
 
-I recently got around to testing Intel's Digital Random Number Generator (DRNG). Intel Secure Key (code-named Bull Mountain Technology) is the name for the Intel® 64 and IA-32 Architectures instructions RDRAND and RDSEED and the underlying hardware implementation. 
+I recently got around to testing Intel's Secure Key Digital Random Number Generator (DRNG). Intel Secure Key (code-named Bull Mountain Technology) is the name for the Intel® 64 and IA-32 Architectures instructions RDRAND and RDSEED and the underlying hardware implementation. 
 
 The RDRAND and RDSEED instructions address the need for a fast source of entropy. From Intel's [Software Implementation Guide](https://software.intel.com/en-us/articles/intel-digital-random-number-generator-drng-software-implementation-guide): "The DRNG using the RDRAND instruction is useful for generating high-quality keys for cryptographic protocols, and the RDSEED instruction is provided for seeding software-based pseudorandom number generators (PRNGs)."
 
 Section 2 of the software implementation guide gives an overview of Random Number Generators (RNGs). For another overview of RNGs watch the excellent [talk by Melissa O'Neill](http://www.pcg-random.org/posts/stanford-colloquium-talk.html), or watch [my talk](https://www.youtube.com/watch?v=jWXZ07YBsPM&feature=youtu.be). I've also found [Daniel Lemire's blog](https://lemire.me/blog/?s=random) to be an excellent resource on implementing RNGs.
 
-Section 3 of the software implementation guide gives an overview of how Intel's DRNG works. Thermal noise is the fundamental source of entropy. A hardware CSPRNG (Cryptographically secure PRNG) digital random bit generator feeds the RDRAND instructions over all cores while an ENRNG (Enhanced Non-deterministic Random Number Generator) feeds the RDSEED instructions over all cores. The RDRAND DRNG is continuously reseeded from the hardare entropy source while the RDSEED generator makes conditioned entropy samples directly available. 
+Section 3 of the software implementation guide gives an overview of how Intel's DRNG works. Thermal noise is the fundamental source of entropy. A hardware CSPRNG (Cryptographically secure PRNG) digital random bit generator feeds the RDRAND instructions over all cores while an ENRNG (Enhanced Non-deterministic Random Number Generator) feeds the RDSEED instructions over all cores. The RDRAND DRNG is continuously reseeded from the hardware entropy source while the RDSEED generator makes conditioned entropy samples directly available. 
 
 ## Determining Support for Intel's DRNG
 Support for RDRAND can be determined by examining bit 30 of the ECX register returned by CPUID, and support for RDSEED can be determined by examining bit 18 of the EBX register.
@@ -65,7 +65,7 @@ bool is_drng_supported() {
 ## Using RDRAND and RDSEED
 The RDRAND and RDSEED instructions may be called as shown below. The size of the operand register determines whether 16-, 32- or 64-bit random numbers are returned. If the carry flag is zero after a DRNG instruction it means a random number wasn't available yet and the software should retry if a random number is still required. 
 
-Similar to a splitmix64_stateless generator, the rdseed64 generator below may be used to seed RNGs:
+Similar to a splitmix64_stateless generator (shown for reference), the rdseed64 generator shown below may be used to seed RNGs:
 {% highlight c++ %}
 //! Stateless [0,2^64) splitmix64 by Daniel Lemire https://github.com/lemire/testingRNG . Useful for seeding RNGs.
 ALWAYS_INLINE uint64_t splitmix64_stateless(const uint64_t index) {// 1.3 ns on local.
@@ -106,7 +106,7 @@ rdseed64():
   ret
 {% endhighlight %}
 
-Below is a Lehmer RNG class for reference and an Intel 32-bit DRNG class using RDRAND:
+Below is a Lehmer RNG class (shown for reference) and an Intel 32-bit DRNG class using RDRAND:
 {% highlight c++ %}
 //! Lehmer RNG with 64bit multiplier, derived from https://github.com/lemire/testingRNG.
 class TC_MCG_Lehmer_RandFunc32 {
@@ -155,7 +155,7 @@ public:
 ## Performance Results:
 In the Intel software implementation guide it is stated that "On real-world systems, a single thread executing RDRAND continuously may see throughputs ranging from 70 to 200 MB/sec, depending on the SPU architecture." 
 
-I also ran some performance measurements on my laptop (which is a 2.9 GHz Intel Core i5 and does cpu_ticks_per_ns = 2.89991):
+I also ran some performance measurements on my laptop (which is a 2.9 GHz Intel Core i5 and has cpu_ticks_per_ns = 2.89991):
 
 {% highlight c++ %}
 int main() {
