@@ -207,7 +207,7 @@ cpu_ticks_per_number = 325.231
 mbits_per_second = 285.327
 ```
 
-Result for rdseed64
+Result for rdseed64:
 ```
 ns_per_number = 445.784
 cpu_ticks_per_number = 1292.73
