@@ -40,8 +40,8 @@ Note that some of the time spent during push back and insert at front is probabl
 The [source code](https://github.com/bduvenhage/Bits-O-Cpp/blob/master/containers/main.cpp) for the tests is available in my [Bits-O-Cpp GitHub repo](https://github.com/bduvenhage/Bits-O-Cpp).
 
 ## Summary
-The push_back operations on a vector and deque require similar time if the vector space is already reserved. If the vector space is already reserved then growing the vector would require it to be moved every time the vector runs out of space. As expected, inserting elements at the front of a deque is much quicker than inserting at the front of a vector.
+The push_back operations on a vector and deque require similar time if the vector space is already reserved. If the vector space is not already reserved then growing the vector would require it to be moved every time the vector runs out of space. As expected, inserting elements at the front of a deque is much quicker than inserting at the front of a vector.
 
 Sorting a deque is almost 15% slower than sorting a vector. This is likely due to the additional dereference required when accessing a random element of a deque. Iterating over the deque is about 50% slower than interating over the vector. Popping from a vector just decrements the size variable and doesn't free any memory so it takes almost no time.
 
-The std::deque is slower than a ring buffer based deque would be, but not by more than 50%. It is likely a good implementation choice when the maximum size of the deque is unknown. In a future post I'll show what my ring buffer based deque looks like.
+The std::deque is slower than a ring buffer based deque would be, but probably not by more than 50%. std::deque is likely a good implementation choice when the maximum size of the deque is unknown. In a future post I'll show what a ring buffer based deque looks like.
