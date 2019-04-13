@@ -19,7 +19,7 @@ I've been considering implementing a ring buffer STL container or container adap
 Given its design, the std::deque has the potential to be very efficient. This post discusses std::deque's internal workings and compares its performance to that of std::vector.
 
 ## The STL Deque Implementation
-The image below shows the memory layout of a std::deque. The data is stored in blocks or chunks which are referenced from a list of chunks called a map. The beginning and end of the map as well as the beginning of the first chunk and the end of the last chunk can have empty slots.
+The image below shows the memory layout of a std::deque. The data is stored in blocks or chunks which are referenced from a list of chunks called a map. The beginning and end of the map as well as the beginning of the first chunk and the end of the last chunk can have empty slots. begin() points to the first unused element in the first chunk and end() points to one past the last element in the last chunk.
 
 <img src="/assets/images/deque.pdf" width="600" />
 
