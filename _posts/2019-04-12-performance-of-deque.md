@@ -18,22 +18,22 @@ Having a fast implementation of a deque is very useful. If the size of the deque
 
 I've been considering implementing a ring buffer STL containor or container adaptor for doing breadth first search faster than would perhaps be possible with an STL deque. However, an STL deque is a much cooler (and faster) container than I initially thought. The deque stores its elements in cache friendly chunks and still allows constant time random access (although with one more dereference than required with a vector). 
 
-Given its design, the std::deque has the potential to be very efficient. This posts discusses the deque's internal workings and compares its performance to that of std::vector.
+Given its design, the std::deque has the potential to be very efficient. This post discusses std::deque's internal workings and compares its performance to that of std::vector.
 
 ## The STL Deque Implementation
 
 ## The Performance of std::deque vs. std::vector
-I compared the performance of std::deque to std::vector on Apple LLVM (clang) compiler version 10.0.1. The code is compiled with -O3 (default Xcode release flags). I'm specifically interested in the relative performance of adding to the end and iterating over elements. One can expect adding to and removing from the front of the container to be much faster for a deque. 
+I compared the performance of std::deque to std::vector on Apple LLVM (clang) compiler version 10.0.1. The code was compiled with -O3 (default Xcode release flags). I'm specifically interested in the relative performance of adding to the end and iterating over elements. One can expect adding to and removing from the front of the container to be much faster for a deque. 
 
 The test does a push_back of 50 million random integers, then inserts 50 million random integers at the front, then sorts the container and then iterates over and sets all the elements to a constant value. The total time these operations take are shown below:
 
-|                    |  Vector  |  Deque   |
-|--------------------|----------|----------|
-| push_back (50M)    | 0.36s    | 0.33s    |
-| insert front (50M) | $$\inf$$ | 0.30s    |
-| sort (100M)        | 8.80s    | 10.0s    |
-| iterate (100M)     | 0.041s   | 0.063s   |
-| pop_back (50M)     | 0.0      | 0.13s    |
+|                    |  Vector    |  Deque   |
+|--------------------|------------|----------|
+| push_back (50M)    | 0.36s      | 0.33s    |
+| insert front (50M) | $$\infty$$ | 0.30s    |
+| sort (100M)        | 8.80s      | 10.0s    |
+| iterate (100M)     | 0.041s     | 0.063s   |
+| pop_back (50M)     | 0.0        | 0.13s    |
 
 Note that some of the time spent during push back and insert at front is probably spent in making the allocated memory pages available to the process. The vector space was reserved before doing the tests. Without reserving the vector space the push_back vector operations take about double the above time.
 
