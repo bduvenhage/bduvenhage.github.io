@@ -22,7 +22,7 @@ Post is in progress ...
 ## The Performance of std::deque vs. std::vector
 I compared the performance of std::deque to std::vector on Apple LLVM (clang) compiler version 10.0.1. The code was compiled with -O3 (default Xcode release flags). 
 
-I'm specifically interested in the relative performance of adding to the end and iterating over elements. One can expect adding to and removing from the front of the container to be much faster for a deque. The test does a push_back of 50 million random integers, then inserts 50 million random integers at the front, then sorts the container and finally iterates over and sets all the elements to a constant value. The total time these operations take are shown below:
+I'm specifically interested in the relative performance of adding to the end of the conatiner and also the performance of iterating over elements. One can expect adding to and removing from the front of the container to be much faster for a deque than for a vector. The test does a push_back of 50 million random integers, then inserts 50 million random integers at the front, then sorts the container and finally iterates over and sets all the elements to a constant value. The total time these operations take are shown below:
 
 |                    |  Vector    |  Deque   |
 |--------------------|------------|----------|
