@@ -30,14 +30,14 @@ The test does a push_back of 50M elements, insert at front of 50M elements and t
 |                    |  Vector  |  Deque   |
 |--------------------|----------|----------|
 | push_back (50M)    | 0.36s    | 0.33s    |
-| insert front (50M) | &&\inf&& | 0.30s    |
+| insert front (50M) | $$\inf$$ | 0.30s    |
 | sort (100M)        | 8.80s    | 10.0s    |
 | iterate (100M)     | 0.041s   | 0.063s   |
 | pop_back (50M)     | 0.0      | 0.13s    |
 
-Some of the push back/front time is actually spent in making the allocated mem pages available to the process. Note also that the vector space was reserved before doing the tests. Without reserve the push_back vector operations take about double the above time.
+Note that some of the push back and insert front time is probably spent in making the allocated mem pages available to the process. The vector space was reserved before doing the tests. Without reserving the vector space the push_back vector operations take about double the above time.
 
 The testing code is available at ...
 
 ## Summary
-The push_back operations on the vector and deque take very similar time given that the vector space is already reserved. If the vector space was not already reserved then growing the vector would require elements to be moved every time the vector runs out of space. Inserting elements at the front is much quicker with a deque as expected.
+The push_back operations on the vector and deque take very similar time given that the vector space is already reserved. If the vector space was not already reserved then growing the vector would require to be moved every time the vector runs out of space. Inserting elements at the front is much quicker with a deque as expected.
