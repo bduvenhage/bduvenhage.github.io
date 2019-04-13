@@ -16,7 +16,9 @@ Many algorithms make use of a double ended queue (a.k.a. a deque). For example, 
 
 Having a fast implementation of a deque is very useful. If the size of the deque is bounded then one can implement it as a ring buffer over a pre-allocated array.
 
-I've been considering implementing a ring buffer STL containor or container adaptor for doing breadth first search faster than would perhaps be possible with an STL deque. However, an STL deque is a much cooler (and faster) container than I initially thought. The deque stores its elements in cache friendly chunks and still allows constant time random access (although with one more dereference than required with a vector). Given its design, a deque has the potential to be very efficient.
+I've been considering implementing a ring buffer STL containor or container adaptor for doing breadth first search faster than would perhaps be possible with an STL deque. However, an STL deque is a much cooler (and faster) container than I initially thought. The deque stores its elements in cache friendly chunks and still allows constant time random access (although with one more dereference than required with a vector). 
+
+Given its design, the std::deque has the potential to be very efficient. This posts discusses the deque's internal workings and compares its performance to that of std::vector.
 
 ## The STL Deque Implementation
 
