@@ -52,3 +52,5 @@ The push_back operations on a vector and deque require similar time if the vecto
 Sorting a deque is almost 15% slower than sorting a vector. This is likely due to the additional dereference required when accessing a random element of a deque. Iterating over the deque is about 50% slower than iterating over the vector. Popping from a vector just decrements the size variable and doesn't free any memory so it takes almost no time.
 
 The std::deque is slower than a ring buffer based deque would be, but probably not by more than 50%. std::deque is likely a good implementation choice when the maximum size of the deque is unknown. In a future post I'll show what a ring buffer based deque looks like and how it performs relative to std::vector and std::deque.
+
+From the information in this post it seems that the best way to implement a ring buffer that is faster than a std::deque would be to implement it similar to a container adapter on vector.
