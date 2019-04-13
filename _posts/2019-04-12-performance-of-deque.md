@@ -21,6 +21,8 @@ Given its design, the std::deque has the potential to be very efficient. This po
 ## The STL Deque Implementation
 Post is in progress ...
 
+<img src="https://i.stack.imgur.com/QullW.png" width="200" />
+
 ## The Performance of std::deque vs. std::vector
 I compared the performance of std::deque to std::vector on Apple LLVM (clang) compiler version 10.0.1. The code was compiled with -O3 (default Xcode release flags). 
 
