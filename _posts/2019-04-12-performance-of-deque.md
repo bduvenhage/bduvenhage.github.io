@@ -25,7 +25,7 @@ The image below shows the memory layout of a std::deque. The data is stored in b
 
 The push_back operation adds an element to the next available slot of the last chunk. If no space is available in the last chunk then a new chunk is added to the next unused slot in the map. If no space is available at the end of the map then the map is first resized by a reallocation and move similar to how a vector is resized. A similar mechanism is used to add elements to the front via push_front. Popping elements might make a chunk unused at which point the chunk may be freed or returned to a chunk pool. 
 
-It is worth noting that the deque can keep growing in size without having to reallocate and move any of the data elements. However, a drawback of the container is that to reference an element one first needs to reference its chunk and then the element within the chunk.
+It is worth noting that the deque can keep growing in size without having to reallocate and move any of the data elements. However, a drawback of the container is that to access an element one first needs to reference its chunk and then the element within the chunk.
 
 ## The Performance of std::deque vs. std::vector
 I compared the performance of std::deque to std::vector on Apple LLVM (clang) compiler version 10.0.1. The code was compiled with -O3 (default Xcode release flags). 
