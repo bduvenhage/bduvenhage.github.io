@@ -40,7 +40,7 @@ The total time these operations take are shown below:
 | insert front (50M) | $$\approx \infty$$ | 0.30s    |
 | sort (100M)        | 8.80s      | 10.0s    |
 | iterate (100M)     | 0.041s     | 0.063s   |
-| pop_back (50M)     | 0.0        | 0.13s    |
+| pop_back (50M)     | 0.013s     | 0.13s    |
 
 Note that some of the time spent during push back and insert at front is probably spent in making the allocated memory pages available to the process. The vector space was reserved before doing the tests. Without reserving the vector space the push_back vector operations take about double the above time. The time taken to generate 50M random numbers is around 0.06 seconds.
 
