@@ -12,6 +12,8 @@ Many algorithms make use of a double ended queue (a.k.a. a deque). For example, 
 
 If the size of the deque is bounded then one can implement it as a ring buffer over a pre-allocated array. If the size of the deque is not bounded then one would have to trade some performance for the ability to dynamically grow the capacity of the deque.
 
+<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML' async></script>
+
 I've been considering implementing a ring buffer STL containor or container adaptor for doing breadth first search faster than would perhaps be possible with an STL deque. However, an STL deque is a much cooler (and faster) container than I initially thought. The deque stores its elements in cache friendly chunks and still allows constant time random access (although with one more dereference than required with a vector). 
 
 Given its design, the std::deque has the potential to be very efficient. This post discusses std::deque's internal workings and compares its performance to that of std::vector.
@@ -22,7 +24,9 @@ Post is in progress ...
 ## The Performance of std::deque vs. std::vector
 I compared the performance of std::deque to std::vector on Apple LLVM (clang) compiler version 10.0.1. The code was compiled with -O3 (default Xcode release flags). 
 
-I'm specifically interested in the relative performance of adding to the end of the conatiner and also the performance of iterating over elements. One can expect adding to and removing from the front of the container to be much faster for a deque than for a vector. The test does a push_back of 50 million random integers, then inserts 50 million random integers at the front, then sorts the container and finally iterates over and sets all the elements to a constant value. The total time these operations take are shown below:
+I'm specifically interested in the relative performance of adding to the end of the conatiner and also the performance of iterating over elements. One can expect adding to and removing from the front of the container to be much faster for a deque than for a vector. The test does a push_back of 50 million random integers, then inserts 50 million random integers at the front, then sorts the container and finally iterates over and sets all the elements to a constant value. 
+
+The total time these operations take are shown below:
 
 |                    |  Vector    |  Deque   |
 |--------------------|------------|----------|
