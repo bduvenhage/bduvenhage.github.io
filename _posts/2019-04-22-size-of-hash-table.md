@@ -8,7 +8,7 @@ categories: [performance]
 tags: [unordered_set, hash table]
 ---
 
-Hash tables are very useful whenever a constant time lookup of previously calculated results is required. It is therefore good to know how these containers are implemented and used. The C++ std::unordered_map and std::unordered_set are good examples of a hash table and hash set respectively. This post will investigate the heap allocation behaviour of std::unordered_set. One can expect the behaviour of std::unordered_map to be similar.
+Hash tables are very useful whenever a constant time lookup of a key or key-value pair is required. It is therefore good to know how these containers are implemented and used. The C++ std::unordered_map and std::unordered_set are good examples of a hash table and hash set respectively. This post will investigate the heap allocation behaviour of std::unordered_set. One can expect the behaviour of std::unordered_map to be similar.
 
 ## The std::unordered_set Implementation
 std::unordered_set is a set container implemented as a hash set. The container maintains a number of 'buckets' that can each hold more than one item. When an item needs to be inserted into the container a bucket index is first calculated from a hash of the item's value. The item is then added to the bucket which is typically implemented as a linked list.
