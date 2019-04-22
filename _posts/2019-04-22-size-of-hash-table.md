@@ -8,7 +8,7 @@ categories: [performance]
 tags: [unordered_set, hash table]
 ---
 
-Hash tables are very useful whenever a constant lookup time of previously calculated results is required. It is therefore good to know how these containers are implemented and used. The C++ std:unordered_map and std::unordered_set are good examples of hash tables. This post will investigate the heap allocation behaviour of std::unordered_set. One can expect the behaviour of std::unordered_map to be similar.
+Hash tables are very useful whenever a constant lookup time of previously calculated results is required. It is therefore good to know how these containers are implemented and used. The C++ std::unordered_map and std::unordered_set are good examples of hash tables. This post will investigate the heap allocation behaviour of std::unordered_set. One can expect the behaviour of std::unordered_map to be similar.
 
 ## The std::unordered_set Implementation
 std::unordered_set is a set container implemented as a hash set. The container maintains a number of 'buckets' that can each hold more than one item. When an item needs to be inserted into the container a bucket index is first calculated from a hash of the item's value. The item is then added to the bucket which is typically implemented as a linked list.
@@ -32,10 +32,10 @@ Increasing the number of buckets requires a reallocation of buckets and a redist
 
 Storing 20 million uint32_t values in an unordered_set required 657 MB of heap memory. After adding all the items, the allocation breakdown looked like:
 
-|           | Total Num. Elements Allocated | Num. Currently on Heap |
-|-----------|-------------------------------|------------------------|
-| size = 8  | 52679739                      | 26339969               |
-| size = 24 | 19953544                      | 19953544               |
+| Element Size | Total Num. Elements Allocated | Num. Currently on Heap |
+|--------------|-------------------------------|------------------------|
+| size = 8     | 52679739                      | 26339969               |
+| size = 24    | 19953544                      | 19953544               |
 
 The reserved buckets are stored as an array of 64-bit (8 byte) pointers. Each linked list bucket entry is stored as the item's hash, its uint32_t value (with 4 bytes of padding) and a pointer to the next item in the bucket. A bucket entry therefore requires 24 bytes and looks similar to the below struct:
 
