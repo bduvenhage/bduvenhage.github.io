@@ -18,7 +18,7 @@ The C++ std::unordered_set keeps track of its load factor i.e. the average numbe
 ## The Heap Allocation Behaviour
 The below results show the behaviour of the unordered set container when inserting 20 million random 32-bit unsigned integers. The tests were compiled on Apple LLVM (clang) compiler version 10.0.1 with -O3 (default Xcode release flags). 
 
-The container was allowed to automatically resize to keep its load factor from exceeding the default max load factor of 1.0. There is a small probabilty of randomly generating the same number more than once which resulted in an actual set size of 19.95 million items.
+The container was allowed to automatically resize to keep its load factor from exceeding the default max load factor of 1.0. There is a small probability of randomly generating the same number more than once which resulted in an actual set size of 19.95 million items.
 
 The below figure shows how the heap size of the container grows as more items are inserted. I would have liked to use valgrind's massif tool (i.e. valgrind --tool=massif ...) to analyse the memory usage of the std::unordered_set, but it seems that valgrind does not yet support macOS Mojave. So I wrote a minimal allocator to track the number of bytes and breakdown of allocations on the heap. The tracking allocator calls the default allocator's allocate and deallocate functions. The [source code](https://github.com/bduvenhage/Bits-O-Cpp/blob/master/containers/main_hash_table.cpp) for the tests is available in my [Bits-O-Cpp GitHub repo](https://github.com/bduvenhage/Bits-O-Cpp).
 
