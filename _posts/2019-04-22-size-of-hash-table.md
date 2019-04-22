@@ -52,5 +52,5 @@ struct BucketItem
 It is interesting to note that the number of the 24 byte bucket entry allocations are the same as the number of items in the set. This shows that an allocated bucket entry is reused when the hash set is resized. The total number of buckets that are allocated is about twice the number of buckets eventually used which is as expected for an array that is resized by doubling.
 
 ## Summary
-An unordered_set uses more memeory than just storing the items in a list, but it allows constant time checking/retrieval of items. A good rule of thumb for the overhead of the container on a 64-bit system would be 8+16 bytes per item.
+An unordered_set uses more memory than just storing the items in a list, but it allows constant time checking/retrieval of items. A good rule of thumb for the overhead of the container on a 64-bit system would be 8+16 bytes per item.
 
