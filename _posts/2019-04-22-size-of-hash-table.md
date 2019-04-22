@@ -20,13 +20,13 @@ The below results show the behaviour of the unordered set container when inserti
 
 I would have liked to use valgrind's massif tool (i.e. valgrind --tool=massif ...) to analyse the memory usage of the std::unordered_set, but it seems that valgrind does not yet support macOS Mojave. So I wrote a minimal allocator to track the number of bytes and breakdown of allocations on the heap. The tracking allocator calls the default allocator's allocate and deallocate functions. The [source code](https://github.com/bduvenhage/Bits-O-Cpp/blob/master/containers/main_hash_table.cpp) for the tests is available in my [Bits-O-Cpp GitHub repo](https://github.com/bduvenhage/Bits-O-Cpp).
 
-As random numbers are inserted into the set the loading factor increases. When the loading factor exceeds the max loading factor of 1.0 the number of buckets are doubled and the loading factor is halved. The behaviour of the load factor and number of buckets is shown below.
+As random numbers are inserted into the set the load factor increases. When the load factor exceeds the max load factor of 1.0 the number of buckets are doubled and the load factor is halved. The behaviour of the load factor and number of buckets is shown below.
 
 <img src="/assets/images/unordered_set_load_factor.pdf" width="600" />
 
 <img src="/assets/images/unordered_set_buckets.pdf" width="600" />
 
-Increasing the number of buckets requires a reallocation of buckets and a redistribution of items. The below figure shows the time lost whenever the number of buckets are increased.
+Increasing the number of buckets requires a reallocation of buckets and a redistribution of items. The below figure shows the time lost whenever the number of buckets is increased.
 
 <img src="/assets/images/unordered_set_running_time.pdf" width="600" />
 
@@ -49,6 +49,7 @@ struct BucketItem
 };
 {% endhighlight %}
 
+It is interesting to note that the number of bucket entry allocations are the same as the number of items in the set. This shows that an allocated bucke entry is reused when the hash set is resized. 
 
 ## Summary
 An unordered_set uses more memeory than just storing the items in a list, but it allows constant time checking/retrieval of items. A good rule of thumb for the overhead of the container on a 64-bit system would be 8+16 bytes per item.
