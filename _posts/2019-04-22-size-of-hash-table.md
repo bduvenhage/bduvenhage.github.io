@@ -20,7 +20,9 @@ The below results show the behaviour of the unordered set container when inserti
 
 The container was allowed to automatically resize to keep its load factor from exceeding the default max load factor of 1.0. There is a small probabilty of randomly generating the same number more than once which resulted in an actual set size of 19.95 million items.
 
-I would have liked to use valgrind's massif tool (i.e. valgrind --tool=massif ...) to analyse the memory usage of the std::unordered_set, but it seems that valgrind does not yet support macOS Mojave. So I wrote a minimal allocator to track the number of bytes and breakdown of allocations on the heap. The tracking allocator calls the default allocator's allocate and deallocate functions. The [source code](https://github.com/bduvenhage/Bits-O-Cpp/blob/master/containers/main_hash_table.cpp) for the tests is available in my [Bits-O-Cpp GitHub repo](https://github.com/bduvenhage/Bits-O-Cpp).
+The below figure shows how the heap size of the container grows as more items are inserted. I would have liked to use valgrind's massif tool (i.e. valgrind --tool=massif ...) to analyse the memory usage of the std::unordered_set, but it seems that valgrind does not yet support macOS Mojave. So I wrote a minimal allocator to track the number of bytes and breakdown of allocations on the heap. The tracking allocator calls the default allocator's allocate and deallocate functions. The [source code](https://github.com/bduvenhage/Bits-O-Cpp/blob/master/containers/main_hash_table.cpp) for the tests is available in my [Bits-O-Cpp GitHub repo](https://github.com/bduvenhage/Bits-O-Cpp).
+
+<img src="/assets/images/unordered_set_heap_size.pdf" width="600" />
 
 As random numbers are inserted into the set the load factor increases. When the load factor exceeds the max load factor of 1.0 the number of buckets are doubled which halves the load factor. This behaviour of the load factor and number of buckets is shown below.
 
