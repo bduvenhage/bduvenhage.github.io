@@ -13,6 +13,10 @@ H.
 ## The 
 s.
 
+<img src="/assets/images/demoscene_fire.gif" width="600" />
+
+<img src="/assets/images/demoscene_doom_fire.gif" width="600" />
+
 <img src="/assets/images/demoscene_water.gif" width="600" />
 
 
