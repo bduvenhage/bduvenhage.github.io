@@ -41,4 +41,4 @@ This water effect is quite cool. A water heightmap is maintained between two buf
 
 
 ## Summary
-The [source code](https://github.com/bduvenhage/Bits-O-Cpp/tree/master/demoscene) is available in my [Bits-O-Cpp GitHub repo](https://github.com/bduvenhage/Bits-O-Cpp).
+The [source code](https://github.com/bduvenhage/Bits-O-Cpp/tree/master/demoscene) is available in my [Bits-O-Cpp GitHub repo](https://github.com/bduvenhage/Bits-O-Cpp). Thanks for the inspiration [Future Crew](https://en.wikipedia.org/wiki/Future_Crew).
