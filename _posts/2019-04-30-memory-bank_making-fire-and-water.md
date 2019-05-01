@@ -30,12 +30,12 @@ Simple fire can be created by having a heat source with random noise that is con
 <img src="/assets/images/demoscene_fire.gif" width="600" />
 
 ## Doom Fire 
-Doom like fire can be created by creating a heat source that is propagated up while being randomly extinguised and scattered. I generate one more random number than the [method recently documented by FABIEN SANGLARD](http://fabiensanglard.net/doom_fire_psx/), but it is almost as fast as the simple fire above.
+Doom style fire can be created by having a heat source that is propagated up while being randomly extinguised and scattered. I generate one more random number than the [method recently documented by FABIEN SANGLARD](http://fabiensanglard.net/doom_fire_psx/), but it is almost as fast as the simple fire above.
 
 <img src="/assets/images/demoscene_doom_fire.gif" width="600" />
 
 ## Water 
-This water effect is quite cool. A water heightmap is maintained between two buffers. An [archived explanation](https://web.archive.org/web/20160418004149/http://freespace.virgin.net/hugo.elias/graphics/x_water.htm) contains more details on how this works. 
+This water effect is quite cool. A water heightmap is maintained between two buffers. An [archived explanation](https://web.archive.org/web/20160418004149/http://freespace.virgin.net/hugo.elias/graphics/x_water.htm) contains more details on how this works. Here I render the water height directly, but one should really create a refractive offset into a texture map. A demo of this effect is available at http://www.onlinetutorialsweb.com/demo/javascript-water-ripple/ .
 
 <img src="/assets/images/demoscene_water.gif" width="600" />
 
