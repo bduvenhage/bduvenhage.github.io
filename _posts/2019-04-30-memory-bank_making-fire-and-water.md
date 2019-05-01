@@ -2,7 +2,7 @@
 layout: post
 title:  "Making Fire and Water"
 date: 2019-04-30
-published: false
+published: true
 comments: true
 categories: [memory_bank]
 tags: [demoscene]
