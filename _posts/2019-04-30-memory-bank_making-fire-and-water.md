@@ -30,7 +30,7 @@ Simple fire can be created by having a heat source with random noise that is con
 <img src="/assets/images/demoscene_fire.gif" width="600" />
 
 ## Doom Fire 
-Doom style fire can be created by having a heat source that is propagated up while being randomly extinguised and scattered. I generate one more random number than the [method recently documented by FABIEN SANGLARD](http://fabiensanglard.net/doom_fire_psx/), but it is almost as fast as the simple fire above.
+Doom style fire can be created by having a heat source that is propagated up while being randomly extinguised and scattered. I generate one more random number than the [method recently documented by Fabien Sanglard](http://fabiensanglard.net/doom_fire_psx/), but it is almost as fast as the simple fire above.
 
 <img src="/assets/images/demoscene_doom_fire.gif" width="600" />
 
