@@ -8,7 +8,7 @@ categories: [memory_bank]
 tags: [demoscene]
 ---
 
-Future Crew's 1993 PC demo called [Second Reality](https://en.wikipedia.org/wiki/Second_Reality) had a Brobdingnagian impact on my interest in programming. Much of what I researched and played with at a young age was due to this demo. The demo won a couple of prises and eventually made it onto [Slashdot's Top 10 Hacks of All Time](https://slashdot.org/story/99/12/13/0943241/slashdots-top-10-hacks-of-all-time). The [source code](https://github.com/mtuomi/SecondReality) which contains lots of PAS, POV and ASM files was released to celebrate the 20th anniversary of the demo. A [high quality video](https://www.youtube.com/watch?v=iw17c70uJes) of the demo is also available.
+Future Crew's 1993 PC demo called [Second Reality](https://en.wikipedia.org/wiki/Second_Reality) had a Brobdingnagian impact on my interest in programming. Much of what I researched and played with at a young age was due to this demo. The demo won a couple of prizes and eventually made it onto [Slashdot's Top 10 Hacks of All Time](https://slashdot.org/story/99/12/13/0943241/slashdots-top-10-hacks-of-all-time). The [source code](https://github.com/mtuomi/SecondReality) which contains lots of PAS, POV and ASM files was released to celebrate the 20th anniversary of the demo. A [high quality video](https://www.youtube.com/watch?v=iw17c70uJes) of the demo is also available.
 
 This post is my first "memory bank" post. In these posts I'll dig up some of my old code, make it run and preserve the code by committing it to github. In this post I'll revive some of my old code for making fire and water.
 
