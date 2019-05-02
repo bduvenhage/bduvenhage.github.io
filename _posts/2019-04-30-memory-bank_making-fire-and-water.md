@@ -12,7 +12,7 @@ Future Crew's 1993 PC demo called [Second Reality](https://en.wikipedia.org/wiki
 
 This post is my first "memory bank" post. In these posts I'll dig up some of my old code, make it run and preserve the code by committing it to github. In this post I'll revive some of my old code for making fire and water.
 
-## Coding like its 1998.
+## Coding like it's 1998.
 [Mode 13h](https://en.wikipedia.org/wiki/Mode_13h) was a standard 320x200 VGA graphics mode with 256 colours. Mode 13h provided a linear 320x200 block of video memory at 0xA000:0000, where each byte represents one pixel. 
 
 To set the RGB value of each of the 256 colours in the palette one would write the colour number first to the DAC Write Index register at 0x3C8 and then writing three 6-bit RGB components to the DAC Data register at 0x3C9 using the outp() function from conio.h in MSDOS. [Michael Abrash’s Graphics Programming Black Book](http://www.jagregory.com/abrash-black-book/) is a good reference for more info on how this all worked.
