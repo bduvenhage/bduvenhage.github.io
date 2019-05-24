@@ -18,7 +18,7 @@ title: Bernardt Duvenhage's Blog
 name: Bernardt Duvenhage's Blog
 email: bernardt.duvenhage@gmail.com
 description: >- # this means to ignore newlines until "baseurl:"
-  Saving the world one line of code at a time - a blog on 'efficiency with algorithms, performance with data structures' and other things I don't know.
+  Saving the world one line of code at a time - a blog on 'efficiency with algorithms, performance with data structures' and other things I don't (didn't?) know.
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "http://bduvenhage.me" # the base hostname & protocol for your site, e.g. http://example.com
 
