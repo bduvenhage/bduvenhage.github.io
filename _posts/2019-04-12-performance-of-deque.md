@@ -21,7 +21,7 @@ Given its design, the std::deque has the potential to be very efficient. This po
 ## The STL Deque Implementation
 The image below shows the memory layout of a std::deque. The data is stored in blocks or chunks which are referenced from a list of chunks called a map. The beginning and end of the map as well as the beginning of the first chunk and the end of the last chunk can have empty slots. begin() points to the first unused element in the first chunk and end() points to one past the last element in the last chunk.
 
-<img src="/assets/images/deque.pdf" width="600" />
+<img src="/assets/images/deque.png" width="600" />
 
 The push_back operation adds an element to the next available slot of the last chunk. If no space is available in the last chunk then a new chunk is added to the next unused slot in the map. If no space is available at the end of the map then the map is first resized by a reallocation and move similar to how a vector is resized. A similar mechanism is used to add elements to the front via push_front. Popping elements might make a chunk unused at which point the chunk may be freed or returned to a chunk pool. 
 
