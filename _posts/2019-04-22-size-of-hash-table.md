@@ -20,19 +20,19 @@ The results below show the behaviour of the unordered set container when inserti
 
 The container was allowed to automatically resize to keep its load factor from exceeding the default max load factor of 1.0. The below figure shows how the heap size of the container grows as more items are inserted. The 'jumps' in the container size happens everytime the container resizes itself.
 
-<img src="/assets/images/unordered_set_heap_size.pdf" width="600" />
+<img src="/assets/images/unordered_set_heap_size.png" width="600" />
 
 I would have liked to use valgrind's massif tool (i.e. valgrind --tool=massif ...) to analyse the memory usage of the std::unordered_set, but it seems that valgrind does not yet support macOS Mojave. So I wrote a minimal allocator to track the number of bytes and breakdown of allocations on the heap. The tracking allocator calls the default allocator's allocate and deallocate functions. 
 
 As random numbers are inserted into the set the load factor increases. When the load factor exceeds the max load factor of 1.0 the number of buckets are doubled which halves the load factor. This behaviour of the load factor and number of buckets is shown below.
 
-<img src="/assets/images/unordered_set_load_factor.pdf" width="600" />
+<img src="/assets/images/unordered_set_load_factor.png" width="600" />
 
-<img src="/assets/images/unordered_set_buckets.pdf" width="600" />
+<img src="/assets/images/unordered_set_buckets.png" width="600" />
 
 Increasing the number of buckets requires a reallocation of buckets and a redistribution of items. The below figure shows the time lost whenever the number of buckets is doubled. 
 
-<img src="/assets/images/unordered_set_running_time.pdf" width="600" />
+<img src="/assets/images/unordered_set_running_time.png" width="600" />
 
 Storing 20 million uint32_t values in an unordered_set required 657 MB of heap memory. After having adding all the items, the allocation breakdown looked like:
 
