@@ -38,6 +38,7 @@ plugins:
   - jekyll-feed
   - jekyll-paginate
   - jekyll-gist
+  - jekyll-email-protect  
   
 google_analytics: UA-137789802-1
 
