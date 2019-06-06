@@ -16,7 +16,7 @@
 
 title: Bernardt Duvenhage's Blog
 name: Bernardt Duvenhage's Blog
-email: {{ 'bernardt.duvenhage@gmail.com' | encode_email }}
+# email: bernardt.duvenhage@gmail.com
 description: >- # this means to ignore newlines until "baseurl:"
   Saving the world one line of code at a time - a blog on 'efficiency with algorithms, performance with data structures' and things I don't (didn't?) know.
 baseurl: "" # the subpath of your site, e.g. /blog
@@ -38,7 +38,6 @@ plugins:
   - jekyll-feed
   - jekyll-paginate
   - jekyll-gist
-  - jekyll-email-protect  
   
 google_analytics: UA-137789802-1
 
