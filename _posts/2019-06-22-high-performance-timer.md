@@ -81,7 +81,7 @@ To accommodate TSC skew between sockets, the code could be adapted to maintain `
 ## Summary
 The TSC can be used as a high performance timer. Moving forward, the architectural behaviour of the TSC is to be invariant and available for wall clock time measurements. This is also true for guest code running on virtualisation software. 
 
-Al alternative to directly using the TSC is to use C++'s chrono timer with the high resolution option ... busy with an example for this...
+An alternative to directly using the TSC is to use C++'s chrono timer with the high resolution option ... busy with an example for this...
 
 The full [source](https://github.com/bduvenhage/Bits-O-Cpp/tree/master/time) with execution timing
 is available in my [Bits-O-Cpp](https://github.com/bduvenhage/Bits-O-Cpp) GitHub repo.
