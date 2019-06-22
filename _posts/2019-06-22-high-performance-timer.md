@@ -8,7 +8,7 @@ categories: [performance]
 tags: [performance, timer, time, tsc]
 ---
 
-Your computer has a high performance Time-Stamp Counter (TSC) that increments at a rate similar to the CPU clock. On modern processors this counter increments at a constant rate and may be used as a wall clock timer. The benefit of the TSC compared to the Linux system timeofday function, for example, is that the TSC counter takes only a few clock cycles to read.
+Your computer has a high performance Time-Stamp Counter (TSC) that increments at a rate similar to the CPU clock. On modern processors this counter increments at a constant rate and may be used as a wall clock timer. The benefit of the TSC compared to the Linux system timeofday function, for example, is that the TSC takes only a few clock cycles to read.
 
 From Section 17.15 _Time Stamp Counter_ of the 'Intel 64 and IA-32 Architectures Software Developer’s Manual, Volume 3B': "Constant TSC behaviour ensures that the duration of each clock tick is uniform and supports the use of the TSC as a wall clock timer even if the processor core changes frequency. This is the architectural behaviour moving forward." 
 
