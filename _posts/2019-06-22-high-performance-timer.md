@@ -12,7 +12,7 @@ Your computer has a high performance Time-Stamp Counter (TSC) that increments at
 
 From Section 17.15 _Time Stamp Counter_ of the 'Intel 64 and IA-32 Architectures Software Developer’s Manual, Volume 3B': "Constant TSC behaviour ensures that the duration of each clock tick is uniform and supports the use of the TSC as a wall clock timer even if the processor core changes frequency. This is the architectural behaviour moving forward." 
 
-So the architectural behaviour now and moving forward is that the TSC increments at a constant rate. This will true even though the actual CPU clock rate may drop to save power or increase during turbo boost. Note that on certain processors, the TSC frequency may not be the same as the frequency in the brand string.
+So the architectural behaviour now and moving forward is that the TSC increments at a constant rate. This will be true even though the actual CPU clock rate may drop to save power or increase during turbo boost. Note that on certain processors, the TSC frequency may not be the same as the CPU frequency in the brand string.
 
 On virtual hosts modern processors also got your back with two features called _TSC offsetting_ and _TSC scaling_. Virtualisation software can appropriately set the scale and offset of the TSC when read by guest software so that the guest wouldn't notice being migrated from one platform to another. Intel has a 'Timestamp-Counter Scaling for Virtualization White Paper' that you can read for more info. I'm not sure how widely modern processors has adopted scaling yet, but offsetting seems pretty standard.
 
@@ -46,12 +46,12 @@ The RDTSCP instruction can be called as shown below:
 
 The RDTSCP instruction also returns the processor ID (chip and core) that the instruction was executed on. RDTSCP does wait until all previous instructions have executed and all previous loads are globally visible, but it still does not wait for previous stores to be globally visible and subsequent instructions may begin execution before the read operation is performed.
 
-On a Macbook Intel Core i5-5287U 06_3D @ 2.90GHz the RDTSC and RDTSCP instructions seem to take around 23 cycles or 8 ns. RDTSCx are therefore fairly long latency instructions. The 'Intel 64 and IA-32 Architectures Optimization Reference Manual' reports an instruction throughput of 10 for DisplayFamily_Display_Model 06_3D which is what one can probably expect if the timing instructions are spaced further apart than in the testing code I used. The point is that RDTSCx (and any timing) instructions shouldn't be used in the inner loop of your code if timing overhead is a concern.
+On a Macbook Intel Core i5-5287U (06_3D) @ 2.90GHz the RDTSC and RDTSCP instructions seem to take around 23 cycles or 8 ns. RDTSC(P) are therefore fairly long latency instructions. The 'Intel 64 and IA-32 Architectures Optimization Reference Manual' reports an instruction throughput of 10 (for DisplayFamily_Display_Model = 06_3D) which is what one can probably expect if the timing instructions are spaced further apart than in the testing code I used. The point is that even RDTSC(P) (and any timing) instructions shouldn't be used in the inner loop of your code if timing overhead is a concern.
 
 ## Measuring Wall Clock Time
 Given that the TSC frequency is invariant, if the frequency of the counter is known then it can be used to measure wall clock time in seconds.
 
-If `init_tick` is the reference 'zero' tick and `seconds_per_tick_` is the timer period (reciprocal of the frequency) then the wall clock time in seconds since a reference init time is returned by:
+If `init_tick` is the reference 'zero' tick and `seconds_per_tick_` is the timer period (reciprocal of the frequency) then the wall clock time in seconds since the reference init time is returned by:
 {% highlight c++ %}
   ALWAYS_INLINE double get_tsc_time() {
     return (_get_tsc_ticks_since_reset() - init_tick_) * seconds_per_tick_;
@@ -76,10 +76,10 @@ On modern platforms the TSC is synchronised between cores of the same socket and
 
 The code I've implemented assumes that the TSC is synchronised over sockets, but I don't have enough experience with multi-socket systems to confirm this behaviour. I'll update this post if I find that the TSC is not adequately synchronised across sockets.
 
-To accommodate TSC skew between sockets, the code could be adapted to maintain init_tick_ values and perhaps also seconds_per_tick_ values for each socket using a list or an unordered map indexed by chip/socket.
+To accommodate TSC skew between sockets, the code could be adapted to maintain `init_tick_` values and perhaps also `seconds_per_tick_` values for each socket using a list or an unordered map indexed by socket.
 
 ## Summary
-The TSC can be used as a high performance timer. Moving forward, the architectural behaviour of the TSC is to be invariant and available to do wall clock time measurements. This is also true for guest code running on virtualisation software. 
+The TSC can be used as a high performance timer. Moving forward, the architectural behaviour of the TSC is to be invariant and available for wall clock time measurements. This is also true for guest code running on virtualisation software. 
 
 Al alternative to directly using the TSC is to use C++'s chrono timer with the high resolution option ... busy with an example for this...
 
