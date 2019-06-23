@@ -16,7 +16,7 @@ So the architectural behaviour now and moving forward is that the TSC increments
 
 On virtual hosts modern processors also got your back with two features called _TSC offsetting_ and _TSC scaling_. Virtualisation software can appropriately set the scale and offset of the TSC when read by guest software so that the guest wouldn't notice being migrated from one platform to another. Intel has a 'Timestamp-Counter Scaling for Virtualization White Paper' that you can read for more info. I'm not sure how widely modern processors has adopted scaling yet, but offsetting seems pretty standard.
 
-I started using the TSC to reduce my timing overhead on TopCoder's marathon match platform. The timeofday operation was extremely slow on the platform and would take 130ms compared to around 30ns locally. This was probably due to the anti-cheating measures they put in place. In these situations having an alternative timing operation that takes less than 10ns is useful.
+I originally investigated and used the TSC to reduce my timing overhead on TopCoder's marathon match platform. The timeofday operation was extremely slow on the platform and would take 130ms compared to around 30ns locally. This was probably due to the anti-cheating measures they put in place. In these situations having an alternative timing operation that takes less than 10ns is useful.
 
 ## The RDTSC and RDTSCP instructions
 The RDTSC and RDTSCP instructions can be used by user-mode / guest code to read the TSC. These instructions read the 64-bit TSC value into EDX:EAX. The high-order 32 bits of each of RAX and RDX are cleared. 
