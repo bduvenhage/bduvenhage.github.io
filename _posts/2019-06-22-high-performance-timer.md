@@ -88,7 +88,7 @@ std::chrono::high_resolution_clock::time_point time_point = std::chrono::high_re
 
 The high_resolution_clock is aliased to the highest resolution counter provided by the compiler implementation. On a Macbook Intel Core i5-5287U (06_3D) @ 2.90GHz platform running Apple LLVM (clang) 10.0.1 the high resolution clock is aliased to `std::chrono::steady_clock`.
 
-On this platform the steady_clock counter has a frequency of 1GHz and a throughput of around 45 ns. It seems to be the same clock as as `clock_gettime(CLOCK_UPTIME_RAW, ...)` which in turn seem from the man pages to be the same clock that `mach_absolute_time()` uses. Therefore, `std::chrono::high_resolution_clock` would likely suffer from the same long latencies on platforms like TopCoder.
+On this platform the steady_clock counter has a frequency of 1GHz and a throughput of around 45 ns. It seems to be the same clock as as `clock_gettime(CLOCK_UPTIME_RAW, ...)` which in turn seems from the man pages to be the same clock that `mach_absolute_time()` uses. Therefore, `std::chrono::high_resolution_clock` would likely suffer from the same long latencies on platforms like TopCoder.
 
 A [simple example](https://github.com/bduvenhage/Bits-O-Cpp/blob/master/time/main_cpp11_chrono.cpp) of std::chrono is available in my [Bits-O-Cpp](https://github.com/bduvenhage/Bits-O-Cpp) GitHub repo.
 
