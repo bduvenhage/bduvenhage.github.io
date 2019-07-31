@@ -2,7 +2,7 @@
 layout: post
 title:  "Generating Equidistant Vectors"
 date: 2019-07-31
-published: true
+published: false
 comments: true
 categories: [geometry]
 tags: [geometry, computer graphics]
@@ -13,10 +13,10 @@ In this post I'll revive work I did during my PhD to generate 3D vectors that ar
 I'll show two methods for generating equidistant vectors. One using the golden section spiral a.k.a. the Fibonacci spiral sphere and another using a sub-division of an icosahedron. The golden section spiral has the benefit that one can exactly specify the desired number of vectors while the sub-division method has the benefit of approximately circular (pentagon and hexagon) shaped bins.
 
 ## The Fibonacci Spiral Sphere
-<img src="/assets/images/fibogeodual.jpg" width="230" />
+<img src="/assets/images/fibogeodual.jpg" width="640" />
 
 ## Sub-division of an Icosahedron
-<img src="/assets/images/icosageodual.jpg" width="230" />
+<img src="/assets/images/icosageodual.jpg" width="640" />
 
 ## Symmary
 ...
