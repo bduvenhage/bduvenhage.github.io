@@ -65,7 +65,7 @@ Wrapping this up, $$P_i = (\arcsin(i\frac{2}{N+1} - 1), i\vartheta)$$, is the la
 <img src="/assets/images/fibomesh.jpg" width="320" />
 <img src="/assets/images/fibogeodual.jpg" width="320" />
 
-Shown above is a tessellated Fibonacci spiral sphere with 162 points (on the left) and its geometric dual (on the right). The geometric dual shows the shapes of the spaces around each of the equidistant points.
+Shown above is a tessellated Fibonacci spiral sphere with 162 points (on the left) and its geometric dual (on the right). The geometric dual shows the shapes of the spaces around each of the equidistant points. Note that the points are generated in latitude order. To tesselate the sphere one still needs to apply a Delaunay or similar triangulation algorithm.
 
 The C++ code to generate the points on the sphere is:
 {% highlight c++ %}
@@ -92,4 +92,6 @@ std::vector<Vec3> fibonacci_spiral_sphere(const int num_points) {
 {% endhighlight %}
 
 ## Summary
-The Fibonacci lattice/spiral is an efficient method to generate equidistant points on the unit sphere. Note that the points are generated in latitude order. To tesselate the sphere one still needs to apply a Delaunay or similar triangulation algorithm. Full [source](https://github.com/bduvenhage/Bits-O-Cpp/tree/master/geometry) for generating the equidistant points is available in my [Bits-O-Cpp](https://github.com/bduvenhage/Bits-O-Cpp) GitHub repo.
+The Fibonacci lattice/spiral is an efficient method to generate equidistant points on the unit sphere. The golden angle is approximately 2.400 radians or 137.5 degrees. Therefore, each turn of the spiral walk adds two or three points to the sphere. To tesselate the sphere one still needs to apply a Delaunay or similar triangulation algorithm.
+
+Full [source](https://github.com/bduvenhage/Bits-O-Cpp/tree/master/geometry) for generating the equidistant points is available in my [Bits-O-Cpp](https://github.com/bduvenhage/Bits-O-Cpp) GitHub repo.
