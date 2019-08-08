@@ -63,7 +63,7 @@ Given this CDF, the point index $$i$$ of a latitude can be calculated with $$i =
 Wrapping this up, $$P_i = (\arcsin(i\frac{2}{N+1} - 1), i\vartheta)$$, is the latitude & longitude spherical polar coordinate of point $$i$$ for $$i$$ in $$[1,N]$$. Notice that the longitude component of the coordinate is the same as for the disc, but the disc's radius component has been adapted to a latitude component for the sphere of $$N$$ points.
 
 <img src="/assets/images/fibomesh.jpg" width="320" />
-<img src="/assets/images/fibogeodual.jpg" width="320" />
+<img src="/assets/images/fibomesh.jpg" width="320" />
 
 Shown above is a tessellated Fibonacci spiral sphere with 162 points (on the left) and its geometric dual (on the right). The geometric dual shows the shapes of the spaces around each of the equidistant points. Note that the points are generated in latitude order. To tesselate the sphere one still needs to apply a Delaunay or similar triangulation algorithm.
 
