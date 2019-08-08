@@ -5,7 +5,7 @@ date: 2019-07-31
 published: true
 comments: true
 categories: [geometry]
-tags: [geometry, computer graphics]
+tags: [geometry, computer graphics, Fibonacci lattice]
 ---
 
 In this post I'll revive work I did during my PhD to generate 3D points that are equally spaced on the unit sphere. Such equidistant points are useful for many operations over the sphere as well as to properly tesselate it. The method is based on a spiral walk of the spherical surface in angular increments equal to the golden angle. The golden angle is related to the golden ratio.
