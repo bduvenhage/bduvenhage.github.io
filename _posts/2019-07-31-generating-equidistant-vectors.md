@@ -58,7 +58,7 @@ std::vector<Vec2> fibonacci_spiral_disc(const int num_points, const double k) {
 ## The Fibonacci Spiral Sphere
 One can use a similar spiral method to also distribute points on a sphere. To evenly distribute the points, proportionally more turns are allocated to larger circles on the sphere. If the spiral starts at a sphere's pole then the radius and circumference of the spiral at any point is proportional to $$\cos(lat)$$ for $$lat$$ in $$[-\frac{\pi}{2}, \frac{\pi}{2}]$$. The density of the turns of the spiral is therefore also proportional to $$\cos(lat)$$ and the continuous distribution function (CDF) of the turns proportional to $$\sin(lat)+1$$. 
 
-Given the CDF, the point index $$i$$ of a latitude can be calculated with $$i = \frac{N+1}{2} (\sin(lat)+1)$$ for $$N$$ the total number of points required. Then taking the inverse gives, $$lat = \arcsin(i\frac{2}{N+1} - 1)$$.
+Given this CDF, the point index $$i$$ of a latitude can be calculated with $$i = \frac{N+1}{2} (\sin(lat)+1)$$ for $$N$$ the total number of points required. Then taking the inverse gives, $$lat = \arcsin(i\frac{2}{N+1} - 1)$$.
 
 Wrapping this up, $$P_i = (\arcsin(i\frac{2}{N+1} - 1), i\vartheta)$$, is the latitude & longitude spherical polar coordinate of point $$i$$ for $$i$$ in $$[1,N]$$. Notice that the longitude component of the coordinate is the same as for the disc, but the disc's radius component has been adapted to a latitude component for the sphere of $$N$$ points.
 
