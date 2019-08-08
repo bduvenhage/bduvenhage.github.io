@@ -12,7 +12,7 @@ In this post I'll revive work I did during my PhD to generate 3D points that are
 
 <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML' async></script>
 
-Two quantities are in the golden ratio, $$\varphi$$, if their ratio is the same as the ratio of their sum to the larger of the two quantities. $$\frac{a}{b} = \frac{a+b}{a} := \varphi$$ which is approximately 1.618. The golden angle $$\vartheta$$ is the angle subtended by the small arc $$b$$ which is approximately 2.400 radians or 137.5 degrees.
+Two quantities are in the golden ratio, $$\varphi$$, if their ratio is the same as the ratio of their sum to the larger of the two quantities. $$\frac{a}{b} = \frac{a+b}{a} := \varphi$$ which is approximately 1.6180339887... The golden angle $$\vartheta$$ is the angle subtended by the small arc $$b$$ which is approximately 2.3999632297... radians or 137.5077640500... degrees.
 
 <img src="/assets/images/golden_angle.jpg" width="240" />
 
@@ -92,6 +92,6 @@ std::vector<Vec3> fibonacci_spiral_sphere(const int num_points) {
 {% endhighlight %}
 
 ## Summary
-The Fibonacci lattice/spiral is an efficient method to generate equidistant points on the unit sphere. The golden angle is approximately 2.400 radians or 137.5 degrees. Therefore, each turn of the spiral walk adds two or three points to the sphere. To tesselate the sphere one still needs to apply a Delaunay or similar triangulation algorithm.
+The Fibonacci lattice/spiral is a simple and efficient method for generating equidistant points on the unit sphere. The golden angle is approximately 2.400 radians or 137.5 degrees. Therefore, each turn of the spiral walk adds two or three points to the sphere. To tesselate the sphere one still needs to apply a Delaunay or similar triangulation algorithm.
 
 Full [source](https://github.com/bduvenhage/Bits-O-Cpp/tree/master/geometry) for generating the equidistant points is available in my [Bits-O-Cpp](https://github.com/bduvenhage/Bits-O-Cpp) GitHub repo.
