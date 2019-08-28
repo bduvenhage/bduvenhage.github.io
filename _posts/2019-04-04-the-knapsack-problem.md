@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "The knapsack problem"
+title:  "The Knapsack Problem"
 date:   2019-04-04
 published: true
 comments: true
